@@ -6,7 +6,7 @@ import { Pressable } from "react-native";
 import { DrawerNavigationProp } from "@react-navigation/drawer";
 
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
-import { Colors } from "@/constants/colors";
+import { colors } from "@/constants/colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 
 /**
@@ -22,7 +22,7 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        tabBarActiveTintColor: colors[colorScheme ?? "light"].tint,
         headerShown: true,
         /**
          * Add hamburger menu button to all tab headers by default
