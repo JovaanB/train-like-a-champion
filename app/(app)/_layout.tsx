@@ -13,10 +13,5 @@ export default function AppLayout() {
     return <Redirect href="/sign-in" />;
   }
 
-  if (!user.metadata.lastSignInTime)
-  {
-    return <Redirect href="/on-boarding" />
-  }
-
   return <Slot />;
 }

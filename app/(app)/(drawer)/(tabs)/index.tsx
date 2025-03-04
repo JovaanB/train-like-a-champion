@@ -1,60 +1,57 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, Pressable } from "react-native";
 import { useSession } from "@/context";
-import { router } from "expo-router";
+import { router, useRouter } from "expo-router";
+import { getItemFor, storeData } from "@/lib/storageHelper";
 
-/**
- * TabsIndexScreen displays the main home screen content with personalized welcome message
- * @returns {JSX.Element} Home screen component
- */
+const FIRST_LOGIN = "FIRST_LOGIN";
+
 const TabsIndexScreen = () => {
-  // ============================================================================
-  // Hooks
-  // ============================================================================
   const { signOut, user } = useSession();
 
-  // ============================================================================
-  // Handlers
-  // ============================================================================
+  useEffect(() => {
+    const getData = async () => {
+      const firstLogin = await getItemFor(FIRST_LOGIN);
 
-  /**
-   * Handles the logout process
-   */
+      if (!firstLogin && !user?.metadata.lastSignInTime) {
+        router.replace("/on-boarding");
+      } else {
+        await storeData({ key: FIRST_LOGIN, value: "false" });
+      }
+    };
+
+    getData().catch((err) => console.error(err));
+  }, []);
+
   const handleLogout = async () => {
     await signOut();
     router.replace("/sign-in");
   };
 
-  // ============================================================================
-  // Computed Values
-  // ============================================================================
+  const handleStartWorkout = async () => {
+    router.push("/(app)/start-workout");
+  };
 
-  /**
-   * Gets the display name for the welcome message
-   * Prioritizes user's name, falls back to email, then default greeting
-   */
-  const displayName = user?.displayName || user?.email?.split('@')[0] || 'Guest';
-
-  // ============================================================================
-  // Render
-  // ============================================================================
+  const displayName =
+    user?.displayName || user?.email?.split("@")[0] || "Guest";
 
   return (
     <View className="flex-1 justify-center items-center p-4">
-      {/* Welcome Section */}
       <View className="items-center mb-8">
-        <Text className="text-xl text-gray-800 mb-2">
-          Welcome back,
-        </Text>
-        <Text className="text-2xl font-bold text-blue-600">
-          {displayName}
-        </Text>
-        <Text className="text-sm text-gray-500 mt-2">
-          {user?.email}
-        </Text>
+        <Text className="text-xl text-gray-800 mb-2">Welcome back,</Text>
+        <Text className="text-2xl font-bold text-blue-600">{displayName}</Text>
+        <Text className="text-sm text-gray-500 mt-2">{user?.email}</Text>
       </View>
 
-      {/* Logout Button */}
+      <Pressable
+        onPress={handleStartWorkout}
+        className="bg-blue-500 px-6 py-3 rounded-lg active:bg-blue-600 mb-2"
+      >
+        <Text className="text-white font-semibold text-base">
+          Start my pre-program test
+        </Text>
+      </Pressable>
+
       <Pressable
         onPress={handleLogout}
         className="bg-red-500 px-6 py-3 rounded-lg active:bg-red-600"

@@ -9,12 +9,6 @@ import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { colors } from "@/constants/colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 
-/**
- * TabLayout manages the bottom tab navigation while integrating with a drawer menu.
- * This layout serves as a nested navigation setup where:
- * - The drawer navigation is the parent (defined in the parent layout)
- * - The tab navigation is nested inside the drawer
- */
 export default function TabLayout() {
   const colorScheme = useColorScheme();
   const navigation = useNavigation<DrawerNavigationProp<any>>();
@@ -24,11 +18,6 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: colors[colorScheme ?? "light"].tint,
         headerShown: true,
-        /**
-         * Add hamburger menu button to all tab headers by default
-         * This is placed in screenOptions to avoid repetition across screens
-         * Each screen can override this by setting headerLeft: () => null
-         */
         headerLeft: () => (
           <Pressable
             onPress={() => navigation.openDrawer()}
@@ -54,7 +43,6 @@ export default function TabLayout() {
       <Tabs.Screen
         name="explore"
         options={{
-          // Override to remove menu button for this specific screen
           headerLeft: () => null,
           title: "Explore",
           tabBarIcon: ({ color, focused }) => (

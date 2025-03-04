@@ -1,11 +1,12 @@
-import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
-import React, { useCallback } from 'react';
+import { StyleSheet, Text, View, useWindowDimensions } from "react-native";
+import React, { useCallback } from "react";
 import Animated, {
   Extrapolate,
+  Extrapolation,
   interpolate,
   interpolateColor,
   useAnimatedStyle,
-} from 'react-native-reanimated';
+} from "react-native-reanimated";
 
 type Props = {
   length: number;
@@ -25,7 +26,7 @@ const PaginationElement = ({ length, x }: Props) => {
           (index + 1) * SCREEN_WIDTH,
         ],
         [35, 16, 35],
-        Extrapolate.CLAMP
+        Extrapolation.CLAMP
       );
 
       const bgColor = interpolateColor(
@@ -35,11 +36,11 @@ const PaginationElement = ({ length, x }: Props) => {
           index * SCREEN_WIDTH,
           (index + 1) * SCREEN_WIDTH,
         ],
-        ['#D0D0D0', '#304FFE', '#D0D0D0']
+        ["#D0D0D0", "#304FFE", "#D0D0D0"]
       );
 
       return {
-        width,
+        width: width,
         backgroundColor: bgColor,
       };
     }, [x]);
@@ -59,15 +60,14 @@ export default PaginationElement;
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
   itemStyle: {
-    width: 35,
-    height: 10,
+    width: 25,
+    height: 12,
     borderRadius: 5,
-
-    marginHorizontal: 5,
+    marginHorizontal: 4,
   },
 });
