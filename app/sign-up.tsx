@@ -8,18 +8,10 @@ import { useSession } from "@/context";
  * @returns {JSX.Element} Sign-up form component
  */
 export default function SignUp() {
-  // ============================================================================
-  // Hooks & State
-  // ============================================================================
-  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const { signUp } = useSession();
-
-  // ============================================================================
-  // Handlers
-  // ============================================================================
 
   /**
    * Handles the registration process
@@ -44,13 +36,8 @@ export default function SignUp() {
     }
   };
 
-  // ============================================================================
-  // Render
-  // ============================================================================
-
   return (
     <View className="flex-1 justify-center items-center p-4">
-      {/* Welcome Section */}
       <View className="items-center mb-8">
         <Text className="text-2xl font-bold text-gray-800 mb-2">
           Create Account
@@ -60,7 +47,6 @@ export default function SignUp() {
         </Text>
       </View>
 
-      {/* Form Section */}
       <View className="w-full max-w-[300px] space-y-4 mb-8">
         <View>
           <Text className="text-sm font-medium text-gray-700 mb-1 ml-1">
@@ -106,7 +92,6 @@ export default function SignUp() {
         </View>
       </View>
 
-      {/* Sign Up Button */}
       <Pressable
         onPress={handleSignUpPress}
         className="bg-blue-600 w-full max-w-[300px] py-3 rounded-lg active:bg-blue-700"
@@ -116,7 +101,6 @@ export default function SignUp() {
         </Text>
       </Pressable>
 
-      {/* Sign In Link */}
       <View className="flex-row items-center mt-6">
         <Text className="text-gray-600">Already have an account?</Text>
         <Link href="/sign-in" asChild>

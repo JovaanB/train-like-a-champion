@@ -6,16 +6,11 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { User, onAuthStateChanged } from "firebase/auth";
 import {
-  getCurrentUser,
   login,
   logout,
   register,
 } from "@/lib/firebase-service";
 import { auth } from "@/lib/firebase-config";
-
-// ============================================================================
-// Types & Interfaces
-// ============================================================================
 
 /**
  * Authentication context interface defining available methods and state
@@ -56,19 +51,11 @@ interface AuthContextType {
   isLoading: boolean;
 }
 
-// ============================================================================
-// Context Creation
-// ============================================================================
-
 /**
  * Authentication context instance
  * @type {React.Context<AuthContextType>}
  */
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
-
-// ============================================================================
-// Hook
-// ============================================================================
 
 /**
  * Custom hook to access authentication context
@@ -87,10 +74,6 @@ export function useSession(): AuthContextType {
   return value;
 }
 
-// ============================================================================
-// Provider Component
-// ============================================================================
-
 /**
  * SessionProvider component that manages authentication state
  * @param {Object} props - Component props
@@ -98,10 +81,6 @@ export function useSession(): AuthContextType {
  * @returns {JSX.Element} Provider component
  */
 export function SessionProvider(props: { children: React.ReactNode }) {
-  // ============================================================================
-  // State & Hooks
-  // ============================================================================
-
   /**
    * Current authenticated user state
    * @type {[User | null, React.Dispatch<React.SetStateAction<User | null>>]}
@@ -114,14 +93,6 @@ export function SessionProvider(props: { children: React.ReactNode }) {
    */
   const [isLoading, setIsLoading] = useState(true);
 
-  // ============================================================================
-  // Effects
-  // ============================================================================
-
-  /**
-   * Sets up Firebase authentication state listener
-   * Automatically updates user state on auth changes
-   */
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
@@ -131,10 +102,6 @@ export function SessionProvider(props: { children: React.ReactNode }) {
     // Cleanup subscription on unmount
     return () => unsubscribe();
   }, []);
-
-  // ============================================================================
-  // Handlers
-  // ============================================================================
 
   /**
    * Handles user sign-in process
@@ -173,10 +140,6 @@ export function SessionProvider(props: { children: React.ReactNode }) {
     }
   };
 
-  /**
-   * Handles user sign-out process
-   * Clears local user state after successful logout
-   */
   const handleSignOut = async () => {
     try {
       await logout();
@@ -185,10 +148,6 @@ export function SessionProvider(props: { children: React.ReactNode }) {
       console.error("[handleSignOut error] ==>", error);
     }
   };
-
-  // ============================================================================
-  // Render
-  // ============================================================================
 
   return (
     <AuthContext.Provider

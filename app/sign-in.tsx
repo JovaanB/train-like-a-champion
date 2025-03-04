@@ -7,18 +7,10 @@ import { useSession } from "@/context";
  * SignIn component handles user authentication through email and password
  * @returns {JSX.Element} Sign-in form component
  */
-export default function SignIn() {
-  // ============================================================================
-  // Hooks & State
-  // ============================================================================
-  
+export default function SignIn() {  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { signIn } = useSession();
-
-  // ============================================================================
-  // Handlers
-  // ============================================================================
 
   /**
    * Handles the sign-in process
@@ -33,21 +25,13 @@ export default function SignIn() {
     }
   };
 
-  /**
-   * Handles the sign-in button press
-   */
   const handleSignInPress = async () => {
     const resp = await handleLogin();
     router.replace("/(app)/(drawer)/(tabs)/");
   };
 
-  // ============================================================================
-  // Render
-  // ============================================================================
-
   return (
     <View className="flex-1 justify-center items-center p-4">
-      {/* Welcome Section */}
       <View className="items-center mb-8">
         <Text className="text-2xl font-bold text-gray-800 mb-2">
           Welcome Back
@@ -57,7 +41,6 @@ export default function SignIn() {
         </Text>
       </View>
 
-      {/* Form Section */}
       <View className="w-full max-w-[300px] space-y-4 mb-8">
         <View>
           <Text className="text-sm font-medium text-gray-700 mb-1 ml-1">
@@ -89,7 +72,6 @@ export default function SignIn() {
         </View>
       </View>
 
-      {/* Sign In Button */}
       <Pressable
         onPress={handleSignInPress}
         className="bg-blue-600 w-full max-w-[300px] py-3 rounded-lg active:bg-blue-700"
@@ -99,7 +81,6 @@ export default function SignIn() {
         </Text>
       </Pressable>
 
-      {/* Sign Up Link */}
       <View className="flex-row items-center mt-6">
         <Text className="text-gray-600">Don't have an account?</Text>
         <Link href="/sign-up" asChild>
