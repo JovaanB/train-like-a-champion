@@ -1,7 +1,7 @@
 import { Tabs } from "expo-router";
 import React from "react";
 import { useNavigation } from "expo-router";
-import { Ionicons } from "@expo/vector-icons"; // or your icon library
+import { MaterialIcons } from "@expo/vector-icons"; // or your icon library
 import { Pressable } from "react-native";
 import { DrawerNavigationProp } from "@react-navigation/drawer";
 
@@ -23,7 +23,7 @@ export default function TabLayout() {
             onPress={() => navigation.openDrawer()}
             style={{ marginLeft: 16 }}
           >
-            <Ionicons name="menu" size={24} color="black" />
+            <MaterialIcons name="menu" size={24} color="black" />
           </Pressable>
         ),
       }}
@@ -41,13 +41,13 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="programs"
         options={{
           headerLeft: () => null,
-          title: "Explore",
+          title: "My programs",
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
-              name={focused ? "code-slash" : "code-slash-outline"}
+              name={focused ? "body" : "body-outline"}
               color={color}
             />
           ),

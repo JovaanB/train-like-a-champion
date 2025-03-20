@@ -1,31 +1,31 @@
-import Button from '@/components/Button';
-import ListItem from '@/components/ListItem';
-import PaginationElement from '@/components/PaginationElement';
-import { useCallback } from 'react';
+import Button from "@/components/Button";
+import ListItem from "@/components/ListItem";
+import PaginationElement from "@/components/PaginationElement";
+import { useCallback } from "react";
 import {
   ImageURISource,
   SafeAreaView,
   StyleSheet,
   View,
   ViewToken,
-} from 'react-native';
+} from "react-native";
 import Animated, {
   useAnimatedRef,
   useAnimatedScrollHandler,
   useSharedValue,
-} from 'react-native-reanimated';
+} from "react-native-reanimated";
 
 const pages = [
   {
-    text: 'Trusted by millions of people, part of one part',
+    text: "Trusted by millions of people, part of one part",
     image: "",
   },
   {
-    text: 'Spend money abroad, and track your expense',
+    text: "Spend money abroad, and track your expense",
     image: "",
   },
   {
-    text: 'Receive Money From Anywhere In The World',
+    text: "Receive Money From Anywhere In The World",
     image: "",
   },
 ];
@@ -96,9 +96,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   bottomContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     paddingHorizontal: 20,
   },
 });

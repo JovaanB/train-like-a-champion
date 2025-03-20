@@ -14,10 +14,6 @@ import {
 } from 'firebase/auth';
 import { auth } from './firebase-config';
 
-// ============================================================================
-// Types & Interfaces
-// ============================================================================
-
 /**
  * User response structure from Firebase Authentication
  * @interface
@@ -25,10 +21,6 @@ import { auth } from './firebase-config';
 export interface FirebaseUserResponse {
   user: User;
 }
-
-// ============================================================================
-// Authentication Services
-// ============================================================================
 
 /**
  * Retrieves the current authenticated user and their session

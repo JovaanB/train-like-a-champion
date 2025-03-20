@@ -3,13 +3,13 @@ import ListItem from "@/components/ListItem";
 import PaginationElement from "@/components/PaginationElement";
 import { AntDesign } from "@expo/vector-icons";
 import { router } from "expo-router";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import {
   ImageURISource,
   Pressable,
   SafeAreaView,
   StyleSheet,
-  Text,
+  TextInput,
   View,
   ViewToken,
 } from "react-native";
@@ -18,44 +18,7 @@ import Animated, {
   useAnimatedScrollHandler,
   useSharedValue,
 } from "react-native-reanimated";
-
-const pages = [
-  {
-    text: "Overhead",
-  },
-  {
-    text: "Squat jump (cm)",
-    image: "",
-  },
-  {
-    text: "CMJ (cm)",
-    image: "",
-  },
-  {
-    text: "RSI Flight time (ms)",
-    image: "",
-  },
-  {
-    text: "RSI Contact time (ms)",
-    image: "",
-  },
-  {
-    text: "MB Punch left",
-    image: "",
-  },
-  {
-    text: "MB Punch right",
-    image: "",
-  },
-  {
-    text: "Supine iso hold (secs)",
-    image: "",
-  },
-  {
-    text: "30-15 test (km/h)",
-    image: "",
-  },
-];
+import preProgram from "@/data/pre-program.json";
 
 export default function App() {
   const x = useSharedValue(0);
@@ -66,6 +29,7 @@ export default function App() {
       image: ImageURISource;
     }>
   >();
+  const [textInputFocused, setTextInputFocused] = useState(false);
 
   const onViewableItemsChanged = useCallback(
     ({ viewableItems }: { viewableItems: ViewToken[] }) => {
@@ -96,24 +60,31 @@ export default function App() {
       <Pressable onPress={() => router.back()} style={styles.closeBtn}>
         <AntDesign name="close" size={24} color="black" />
       </Pressable>
+      <TextInput
+        placeholder="Result"
+        autoFocus
+        style={[styles.textInput, textInputFocused && styles.textInputFocused]}
+        onFocus={() => setTextInputFocused(true)}
+        onBlur={() => setTextInputFocused(false)}
+      />
       <Animated.FlatList
         ref={flatListRef}
         onScroll={scrollHandle}
         horizontal
         scrollEventThrottle={16}
         pagingEnabled={true}
-        data={pages}
+        data={preProgram}
         keyExtractor={(_, index) => index.toString()}
         bounces={false}
         renderItem={renderItem}
         showsHorizontalScrollIndicator={false}
         onViewableItemsChanged={onViewableItemsChanged}
       />
-      <PaginationElement length={pages.length} x={x} />
+      <PaginationElement length={preProgram.length} x={x} />
       <View style={styles.bottomContainer}>
         <Button
           currentIndex={flatListIndex}
-          length={pages.length}
+          length={preProgram.length}
           flatListRef={flatListRef}
         />
       </View>
@@ -129,6 +100,21 @@ const styles = StyleSheet.create({
   closeBtn: {
     marginLeft: "auto",
     margin: 16,
+  },
+
+  textInput: {
+    justifyContent: "center",
+    marginHorizontal: "auto",
+    marginBottom: 10,
+    borderColor: "gray",
+    borderWidth: 1,
+    borderRadius: 8,
+    width: 200,
+    padding: 8,
+  },
+  textInputFocused: {
+    borderColor: "#304FFE",
+    borderWidth: 2,
   },
   bottomContainer: {
     flexDirection: "row",

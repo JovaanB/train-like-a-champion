@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet } from "react-native";
 import React, { useCallback } from "react";
 import Animated, {
+  SharedValue,
   useAnimatedStyle,
   withSpring,
   withTiming,
@@ -12,7 +13,7 @@ import { storeData } from "@/lib/storageHelper";
 const FIRST_LOGIN = "FIRST_LOGIN";
 
 type Props = {
-  currentIndex: Animated.SharedValue<number>;
+  currentIndex: SharedValue<number>;
   length: number;
   flatListRef: any;
 };
@@ -70,12 +71,14 @@ const Button = ({ currentIndex, length, flatListRef }: Props) => {
       <Animated.Text style={[styles.textStyle, rnTextStyle]}>
         Get Started
       </Animated.Text>
-      <AnimatedIcon
-        name="arrowright"
-        size={24}
-        color="white"
-        style={[styles.imageStyle, imageAnimatedStyle]}
-      />
+      {currentIndex.value < length && (
+        <AnimatedIcon
+          name="arrowright"
+          size={24}
+          color="white"
+          style={[styles.imageStyle, imageAnimatedStyle]}
+        />
+      )}
     </AnimatedPressable>
   );
 };
