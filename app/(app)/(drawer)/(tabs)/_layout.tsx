@@ -18,9 +18,10 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: colors[colorScheme ?? "light"].tint,
         headerShown: true,
+        headerTransparent: true,
         headerLeft: () => (
           <Pressable
-            onPress={() => navigation.openDrawer()}
+            onPress={() => navigation.toggleDrawer()}
             style={{ marginLeft: 16 }}
           >
             <MaterialIcons name="menu" size={24} color="black" />
@@ -41,9 +42,9 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="programs"
+        name="my-programs"
         options={{
-          headerLeft: () => null,
+          headerShown: false,
           title: "My programs",
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon

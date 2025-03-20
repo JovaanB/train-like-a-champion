@@ -1,6 +1,7 @@
 import Button from "@/components/Button";
 import ListItem from "@/components/ListItem";
 import PaginationElement from "@/components/PaginationElement";
+import { Exercice } from "@/models/program";
 import { AntDesign } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useCallback, useState } from "react";
@@ -18,9 +19,12 @@ import Animated, {
   useAnimatedScrollHandler,
   useSharedValue,
 } from "react-native-reanimated";
-import preProgram from "@/data/pre-program.json";
 
-export default function App() {
+export default function App({
+  exercices
+}: {
+  exercices: Exercice[]
+}) {
   const x = useSharedValue(0);
   const flatListIndex = useSharedValue(0);
   const flatListRef = useAnimatedRef<
@@ -73,18 +77,18 @@ export default function App() {
         horizontal
         scrollEventThrottle={16}
         pagingEnabled={true}
-        data={preProgram}
+        data={exercices}
         keyExtractor={(_, index) => index.toString()}
         bounces={false}
         renderItem={renderItem}
         showsHorizontalScrollIndicator={false}
         onViewableItemsChanged={onViewableItemsChanged}
       />
-      <PaginationElement length={preProgram.length} x={x} />
+      <PaginationElement length={exercices.length} x={x} />
       <View style={styles.bottomContainer}>
         <Button
           currentIndex={flatListIndex}
-          length={preProgram.length}
+          length={exercices.length}
           flatListRef={flatListRef}
         />
       </View>

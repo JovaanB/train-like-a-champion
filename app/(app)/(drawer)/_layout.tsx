@@ -16,6 +16,10 @@ const DrawerLayout = () => {
         <Drawer.Screen
           name="profile"
           options={{
+            headerStyle: {
+              backgroundColor: "transparent",
+            },
+            headerTintColor: "black",
             drawerLabel: "Profile",
             title: "Profile",
           }}

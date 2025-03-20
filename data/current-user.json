@@ -6,5 +6,8 @@
     "lastSignInTime": "2023-10-01T12:00:00Z",
     "creationTime": "2023-01-01T12:00:00Z"
   },
-  "programs": ["program-3", "program-2"]
+  "programs": [
+    "program-3",
+    "program-2"
+  ]
 }

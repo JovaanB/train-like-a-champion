@@ -7,7 +7,7 @@ import { useSession } from "@/context";
  * SignIn component handles user authentication through email and password
  * @returns {JSX.Element} Sign-in form component
  */
-export default function SignIn() {  
+export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { signIn } = useSession();
@@ -27,7 +27,7 @@ export default function SignIn() {
 
   const handleSignInPress = async () => {
     const resp = await handleLogin();
-    router.replace("/(app)/(drawer)/(tabs)/");
+    router.replace("/(app)/(drawer)/(tabs)");
   };
 
   return (
