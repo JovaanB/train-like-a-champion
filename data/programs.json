@@ -1,111 +1,14 @@
 [
   {
     "id": "program-1",
-    "name": "Programme de Force",
-    "description": "Un programme conçu pour améliorer la force musculaire.",
-    "exercises": [
-      {
-        "id": "exercise-1",
-        "name": "Squat",
-        "reps": 10,
-        "sets": 3,
-        "restBetweenSets": 60,
-        "restAfterExercise": 120
-      },
-      {
-        "id": "exercise-2",
-        "name": "Développé couché",
-        "reps": 8,
-        "sets": 4,
-        "restBetweenSets": 90,
-        "restAfterExercise": 120
-      }
-    ]
+    "name": "TLAC-V1",
+    "description": "Train like a champion - v1",
+    "sessions": ["session-1", "session-2"]
   },
   {
     "id": "program-2",
-    "name": "Programme de Cardio",
-    "description": "Un programme pour améliorer l'endurance cardiovasculaire.",
-    "exercises": [
-      {
-        "id": "exercise-3",
-        "name": "Course à pied",
-        "reps": 1,
-        "sets": 1,
-        "restBetweenSets": 0,
-        "restAfterExercise": 180
-      },
-      {
-        "id": "exercise-4",
-        "name": "Cyclisme",
-        "reps": 1,
-        "sets": 1,
-        "restBetweenSets": 0,
-        "restAfterExercise": 180
-      }
-    ]
-  },
-  {
-    "id": "program-3",
-    "name": "Programme Pré-entrainement",
-    "description": "Un programme pour tester vos capacités et déterminé votre programme complet.",
-    "exercises": [
-      {
-        "id": "exercise-5",
-        "name": "Squat jump",
-        "reps": 10,
-        "sets": 3,
-        "restBetweenSets": 60,
-        "restAfterExercise": 120
-      },
-      {
-        "id": "exercise-6",
-        "name": "CMJ",
-        "reps": 8,
-        "sets": 4,
-        "restBetweenSets": 90,
-        "restAfterExercise": 120
-      },
-      {
-        "id": "exercise-7",
-        "name": "RSI flight time",
-        "reps": 5,
-        "sets": 3,
-        "restBetweenSets": 60,
-        "restAfterExercise": 120
-      },
-      {
-        "id": "exercise-8",
-        "name": "RSI contact time",
-        "reps": 5,
-        "sets": 3,
-        "restBetweenSets": 60,
-        "restAfterExercise": 120
-      },
-      {
-        "id": "exercise-9",
-        "name": "MB punch left",
-        "reps": 3,
-        "sets": 1,
-        "restBetweenSets": 60,
-        "restAfterExercise": 120
-      },
-      {
-        "id": "exercise-10",
-        "name": "MB punch right",
-        "reps": 3,
-        "sets": 1,
-        "restBetweenSets": 60,
-        "restAfterExercise": 120
-      },
-      {
-        "id": "exercise-11",
-        "name": "Test 30-15",
-        "reps": 1,
-        "sets": 1,
-        "restBetweenSets": 0,
-        "restAfterExercise": 180
-      }
-    ]
+    "name": "TLAC-V2",
+    "description": "Train like a champion - v2",
+    "sessions": ["session-3"]
   }
 ]

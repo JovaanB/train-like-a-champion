@@ -1,11 +1,13 @@
 import Button from "@/components/Button";
 import ListItem from "@/components/ListItem";
 import PaginationElement from "@/components/PaginationElement";
-import { Exercice } from "@/models/program";
+import { getSessionById } from "@/lib/db-services";
+import { Exercice } from "@/models/session";
 import { AntDesign } from "@expo/vector-icons";
-import { router } from "expo-router";
-import { useCallback, useState } from "react";
+import { router, useLocalSearchParams } from "expo-router";
+import { useCallback, useEffect, useState } from "react";
 import {
+  ActivityIndicator,
   ImageURISource,
   Pressable,
   SafeAreaView,
@@ -20,11 +22,31 @@ import Animated, {
   useSharedValue,
 } from "react-native-reanimated";
 
-export default function App({
-  exercices
-}: {
-  exercices: Exercice[]
-}) {
+interface AppProps {
+  programId: string;
+}
+
+export default function App() {
+  const { id: sessionId } = useLocalSearchParams();
+  const [exercices, setExercices] = useState<Exercice[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPrograms = async () => {
+      try {
+        setIsLoading(true);
+        const findProgram = await getSessionById(sessionId);
+        setExercices(findProgram?.exercices ?? []);
+      } catch (error) {
+        console.error("Failed to fetch program:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPrograms();
+  }, []);
+
   const x = useSharedValue(0);
   const flatListIndex = useSharedValue(0);
   const flatListRef = useAnimatedRef<
@@ -59,6 +81,11 @@ export default function App({
     },
     [x]
   );
+
+  if (isLoading) {
+    return <ActivityIndicator size="large" />;
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <Pressable onPress={() => router.back()} style={styles.closeBtn}>

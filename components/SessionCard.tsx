@@ -1,23 +1,23 @@
-import { Program } from "@/models/program";
+import { Session } from "@/models/session";
 import { useRouter } from "expo-router";
 import React from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 
-const ProgramCard = ({ program }: { program: Program }) => {
+const SessionCard = ({ session }: { session: Session }) => {
   const router = useRouter();
 
   const startWorkout = () => {
     router.push({
-      pathname: "/sessions",
-      params: { programSessions: program.sessions },
+      pathname: "/(app)/start-workout/[id]",
+      params: { id: session.id },
     });
   };
 
   return (
     <Pressable onPress={startWorkout}>
       <View style={styles.card}>
-        <Text style={styles.title}>{program.name}</Text>
-        <Text style={styles.description}>{program.description}</Text>
+        <Text style={styles.title}>{session.name}</Text>
+        <Text style={styles.description}>{session.description}</Text>
       </View>
     </Pressable>
   );
@@ -48,4 +48,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProgramCard;
+export default SessionCard;

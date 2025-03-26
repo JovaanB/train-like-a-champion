@@ -1,7 +1,7 @@
 import { getProgramsByIds } from "@/lib/db-services";
 import { Program } from "@/models/program";
 import { useEffect, useState } from "react";
-import { Text, View, ActivityIndicator, SafeAreaView } from "react-native";
+import { Text, ActivityIndicator, SafeAreaView } from "react-native";
 import currentUser from "@/data/current-user.json";
 import ProgramCard from "@/components/ProgramCard";
 import { ScrollView } from "react-native-gesture-handler";

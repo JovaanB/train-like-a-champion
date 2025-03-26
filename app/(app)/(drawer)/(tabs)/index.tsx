@@ -28,10 +28,6 @@ const TabsIndexScreen = () => {
     router.replace("/sign-in");
   };
 
-  const handleStartWorkout = async () => {
-    router.push("/(app)/start-workout");
-  };
-
   const displayName =
     user?.displayName || user?.email?.split("@")[0] || "Guest";
 
