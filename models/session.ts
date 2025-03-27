@@ -11,5 +11,6 @@ export interface Session {
     id: string;
     name: string;
     description: string;
+    active: boolean;
     exercices: Exercice[];
 }

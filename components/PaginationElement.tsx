@@ -1,7 +1,6 @@
-import { StyleSheet, Text, View, useWindowDimensions } from "react-native";
+import { StyleSheet, View, useWindowDimensions } from "react-native";
 import React, { useCallback } from "react";
 import Animated, {
-  Extrapolate,
   Extrapolation,
   interpolate,
   interpolateColor,

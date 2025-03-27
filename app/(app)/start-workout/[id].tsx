@@ -9,6 +9,8 @@ import { useCallback, useEffect, useState } from "react";
 import {
   ActivityIndicator,
   ImageURISource,
+  KeyboardAvoidingView,
+  Platform,
   Pressable,
   SafeAreaView,
   StyleSheet,
@@ -87,39 +89,50 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Pressable onPress={() => router.back()} style={styles.closeBtn}>
-        <AntDesign name="close" size={24} color="black" />
-      </Pressable>
-      <TextInput
-        placeholder="Result"
-        autoFocus
-        style={[styles.textInput, textInputFocused && styles.textInputFocused]}
-        onFocus={() => setTextInputFocused(true)}
-        onBlur={() => setTextInputFocused(false)}
-      />
-      <Animated.FlatList
-        ref={flatListRef}
-        onScroll={scrollHandle}
-        horizontal
-        scrollEventThrottle={16}
-        pagingEnabled={true}
-        data={exercices}
-        keyExtractor={(_, index) => index.toString()}
-        bounces={false}
-        renderItem={renderItem}
-        showsHorizontalScrollIndicator={false}
-        onViewableItemsChanged={onViewableItemsChanged}
-      />
-      <PaginationElement length={exercices.length} x={x} />
-      <View style={styles.bottomContainer}>
-        <Button
-          currentIndex={flatListIndex}
-          length={exercices.length}
-          flatListRef={flatListRef}
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={20}
+      style={{ flex: 1 }}
+    >
+      <SafeAreaView style={styles.container}>
+        <Pressable onPress={() => router.back()} style={styles.closeBtn}>
+          <AntDesign name="close" size={24} color="black" />
+        </Pressable>
+        <Animated.FlatList
+          ref={flatListRef}
+          onScroll={scrollHandle}
+          horizontal
+          scrollEventThrottle={16}
+          pagingEnabled={true}
+          data={exercices}
+          keyExtractor={(_, index) => index.toString()}
+          bounces={false}
+          renderItem={renderItem}
+          showsHorizontalScrollIndicator={false}
+          onViewableItemsChanged={onViewableItemsChanged}
         />
-      </View>
-    </SafeAreaView>
+        <TextInput
+          placeholder="Result"
+          autoFocus
+          style={[
+            styles.textInput,
+            textInputFocused && styles.textInputFocused,
+          ]}
+          onEndEditing={() => {
+            if (flatListIndex.value === exercices.length - 1) {
+              return router.back();
+            } else {
+              flatListRef?.current?.scrollToIndex({
+                index: flatListIndex.value + 1,
+              });
+            }
+          }}
+          onFocus={() => setTextInputFocused(true)}
+          onBlur={() => setTextInputFocused(false)}
+        />
+        <PaginationElement length={exercices.length} x={x} />
+      </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 }
 
