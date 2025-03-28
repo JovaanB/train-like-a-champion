@@ -1,14 +1,16 @@
 import { Session } from "@/models/session";
 import { useRouter } from "expo-router";
 import React from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, StyleSheet, Pressable } from "react-native";
+import { ThemedText } from "./ThemedText";
 
 const SessionCard = ({ session }: { session: Session }) => {
   const router = useRouter();
-  const { name, description, active } = session;
+  const { name, description, status } = session;
+  const pending = status === "pending";
 
   const startWorkout = () => {
-    if (active) {
+    if (pending) {
       router.push({
         pathname: "/(app)/start-workout/[id]",
         params: { id: session.id },
@@ -17,16 +19,16 @@ const SessionCard = ({ session }: { session: Session }) => {
   };
 
   return (
-    <Pressable onPress={startWorkout} disabled={!active}>
-      <View style={[styles.card, !active && styles.inactiveCard]}>
-        <Text style={[styles.title, !active && styles.inactiveTitle]}>
+    <Pressable onPress={startWorkout} disabled={!pending}>
+      <View style={[styles.card, !pending && styles.inactiveCard]}>
+        <ThemedText style={[styles.title, !pending && styles.inactiveTitle]}>
           {name}
-        </Text>
-        <Text
-          style={[styles.description, !active && styles.inactiveDescription]}
+        </ThemedText>
+        <ThemedText
+          style={[styles.description, !pending && styles.inactiveDescription]}
         >
           {description}
-        </Text>
+        </ThemedText>
       </View>
     </Pressable>
   );

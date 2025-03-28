@@ -3,12 +3,13 @@
     "id": "session-1",
     "name": "Séance force",
     "description": "Une séance conçu pour améliorer la force musculaire.",
-    "active": true,
+    "status": "pending",
     "exercices": [
       {
         "exerciceId": "exercice-1",
         "reps": 10,
         "sets": 3,
+        "load": 80,
         "restBetweenSets": 60,
         "restAfterExercise": 120
       },
@@ -16,6 +17,7 @@
         "exerciceId": "exercice-2",
         "reps": 8,
         "sets": 4,
+        "load": 120,
         "restBetweenSets": 90,
         "restAfterExercise": 120
       }
@@ -24,7 +26,7 @@
   {
     "id": "session-2",
     "name": "Séance cardio",
-    "active": false,
+    "status": "pending",
     "description": "Une séance pour améliorer l'endurance cardiovasculaire.",
     "exercices": [
       {
@@ -46,7 +48,7 @@
   {
     "id": "session-3",
     "name": "Séance de test",
-    "active": true,
+    "status": "pending",
     "description": "Une séance pour tester vos capacités et déterminé votre programme complet.",
     "exercices": [
       {
