@@ -3,15 +3,12 @@
     "id": "program-1",
     "name": "TLAC-V1",
     "description": "Train like a champion - v1",
-    "sessions": [
-      { "id": "session-1", "order": 1, "mandatory": true },
-      { "id": "session-2", "order": 2, "mandatory": false }
-    ]
+    "sessions": ["session-1", "session-2"]
   },
   {
     "id": "program-2",
     "name": "TLAC-V2",
     "description": "Train like a champion - v2",
-    "sessions": [{ "id": "session-3", "order": 1, "mandatory": true }]
+    "sessions": ["session-3"]
   }
 ]

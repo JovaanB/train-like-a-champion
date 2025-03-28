@@ -1,7 +1,6 @@
-import { ThemedText } from "@/components/ThemedText";
 import { useSession } from "@/context";
 import React from "react";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 
 const ProfileScreen = () => {
   const { user } = useSession();
@@ -13,18 +12,18 @@ const ProfileScreen = () => {
   return (
     <View className="flex-1 mt-4 p-4">
       <View className="mb-8">
-        <ThemedText className="text-xl font-bold text-blue-900">
+        <Text className="text-xl font-bold text-blue-900">
           Name: {displayName}
-        </ThemedText>
-        <ThemedText className="text-xl font-semibold  text-blue-900 mt-2">
+        </Text>
+        <Text className="text-xl font-semibold  text-blue-900 mt-2">
           Email: {user?.email}
-        </ThemedText>
-        <ThemedText className="text-normL font-semibold  text-blue-900 mt-2">
+        </Text>
+        <Text className="text-normL font-semibold  text-blue-900 mt-2">
           Last Seen: {user?.metadata?.lastSignInTime}
-        </ThemedText>
-        <ThemedText className="text-normal font-semibold  text-blue-900 mt-2">
+        </Text>
+        <Text className="text-normal font-semibold  text-blue-900 mt-2">
           Created: {user?.metadata?.creationTime}
-        </ThemedText>
+        </Text>
       </View>
     </View>
   );

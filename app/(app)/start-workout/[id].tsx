@@ -1,8 +1,7 @@
 import OneExercice from "@/components/OneExercice";
 import PaginationElement from "@/components/PaginationElement";
-import { ThemedText } from "@/components/ThemedText";
 import { getSessionById, getExerciceById } from "@/lib/db-services";
-import { Exercice } from "@/models/exercice";
+import { Exercice } from "@/models/session";
 import { AntDesign } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
@@ -15,6 +14,7 @@ import {
   SafeAreaView,
   StyleSheet,
   TextInput,
+  Text,
   View,
   ViewToken,
 } from "react-native";
@@ -146,7 +146,7 @@ export default function App() {
               }
             }}
           >
-            <ThemedText style={styles.validateButtonText}>Valider</ThemedText>
+            <Text style={styles.validateButtonText}>Valider</Text>
           </Pressable>
         </View>
         <PaginationElement length={exercices.length} x={x} />

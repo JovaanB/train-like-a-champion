@@ -1,5 +1,5 @@
 import Button from "@/components/Button";
-import ListItem from "@/components/ListItem";
+import ListItem from "@/components/OneExercice";
 import PaginationElement from "@/components/PaginationElement";
 import { useCallback } from "react";
 import {

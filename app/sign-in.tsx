@@ -1,8 +1,7 @@
 import { router, Link } from "expo-router";
-import { TextInput, View, Pressable } from "react-native";
+import { Text, TextInput, View, Pressable } from "react-native";
 import { useState } from "react";
 import { useSession } from "@/context";
-import { ThemedText } from "@/components/ThemedText";
 
 /**
  * SignIn component handles user authentication through email and password
@@ -34,19 +33,19 @@ export default function SignIn() {
   return (
     <View className="flex-1 justify-center items-center p-4">
       <View className="items-center mb-8">
-        <ThemedText className="text-2xl font-bold text-gray-800 mb-2">
+        <Text className="text-2xl font-bold text-gray-800 mb-2">
           Welcome Back
-        </ThemedText>
-        <ThemedText className="text-sm text-gray-500">
+        </Text>
+        <Text className="text-sm text-gray-500">
           Please sign in to continue
-        </ThemedText>
+        </Text>
       </View>
 
       <View className="w-full max-w-[300px] space-y-4 mb-8">
         <View>
-          <ThemedText className="text-sm font-medium text-gray-700 mb-1 ml-1">
+          <Text className="text-sm font-medium text-gray-700 mb-1 ml-1">
             Email
-          </ThemedText>
+          </Text>
           <TextInput
             placeholder="name@mail.com"
             value={email}
@@ -59,9 +58,9 @@ export default function SignIn() {
         </View>
 
         <View>
-          <ThemedText className="text-sm font-medium text-gray-700 mb-1 ml-1">
+          <Text className="text-sm font-medium text-gray-700 mb-1 ml-1">
             Password
-          </ThemedText>
+          </Text>
           <TextInput
             placeholder="Your password"
             value={password}
@@ -77,16 +76,16 @@ export default function SignIn() {
         onPress={handleSignInPress}
         className="bg-blue-600 w-full max-w-[300px] py-3 rounded-lg active:bg-blue-700"
       >
-        <ThemedText className="text-white font-semibold text-base text-center">
+        <Text className="text-white font-semibold text-base text-center">
           Sign In
-        </ThemedText>
+        </Text>
       </Pressable>
 
       <View className="flex-row items-center mt-6">
-        <ThemedText className="text-gray-600">Don't have an account?</ThemedText>
+        <Text className="text-gray-600">Don't have an account?</Text>
         <Link href="/sign-up" asChild>
           <Pressable className="ml-2">
-            <ThemedText className="text-blue-600 font-semibold">Sign Up</ThemedText>
+            <Text className="text-blue-600 font-semibold">Sign Up</Text>
           </Pressable>
         </Link>
       </View>

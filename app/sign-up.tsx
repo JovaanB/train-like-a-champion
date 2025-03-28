@@ -1,8 +1,7 @@
 import { router, Link } from "expo-router";
-import { TextInput, View, Pressable } from "react-native";
+import { Text, TextInput, View, Pressable } from "react-native";
 import { useState } from "react";
 import { useSession } from "@/context";
-import { ThemedText } from "@/components/ThemedText";
 
 /**
  * SignUp component handles new user registration
@@ -33,26 +32,26 @@ export default function SignUp() {
   const handleSignUpPress = async () => {
     const resp = await handleRegister();
     if (resp) {
-      router.replace("/(app)/(drawer)/(tabs)");
+      router.replace("/(app)/(drawer)/(tabs)/");
     }
   };
 
   return (
     <View className="flex-1 justify-center items-center p-4">
       <View className="items-center mb-8">
-        <ThemedText className="text-2xl font-bold text-gray-800 mb-2">
+        <Text className="text-2xl font-bold text-gray-800 mb-2">
           Create Account
-        </ThemedText>
-        <ThemedText className="text-sm text-gray-500">
+        </Text>
+        <Text className="text-sm text-gray-500">
           Sign up to get started
-        </ThemedText>
+        </Text>
       </View>
 
       <View className="w-full max-w-[300px] space-y-4 mb-8">
         <View>
-          <ThemedText className="text-sm font-medium text-gray-700 mb-1 ml-1">
+          <Text className="text-sm font-medium text-gray-700 mb-1 ml-1">
             Name
-          </ThemedText>
+          </Text>
           <TextInput
             placeholder="Your full name"
             value={name}
@@ -64,9 +63,9 @@ export default function SignUp() {
         </View>
 
         <View>
-          <ThemedText className="text-sm font-medium text-gray-700 mb-1 ml-1">
+          <Text className="text-sm font-medium text-gray-700 mb-1 ml-1">
             Email
-          </ThemedText>
+          </Text>
           <TextInput
             placeholder="name@mail.com"
             value={email}
@@ -79,9 +78,9 @@ export default function SignUp() {
         </View>
 
         <View>
-          <ThemedText className="text-sm font-medium text-gray-700 mb-1 ml-1">
+          <Text className="text-sm font-medium text-gray-700 mb-1 ml-1">
             Password
-          </ThemedText>
+          </Text>
           <TextInput
             placeholder="Create a password"
             value={password}
@@ -97,16 +96,16 @@ export default function SignUp() {
         onPress={handleSignUpPress}
         className="bg-blue-600 w-full max-w-[300px] py-3 rounded-lg active:bg-blue-700"
       >
-        <ThemedText className="text-white font-semibold text-base text-center">
+        <Text className="text-white font-semibold text-base text-center">
           Sign Up
-        </ThemedText>
+        </Text>
       </Pressable>
 
       <View className="flex-row items-center mt-6">
-        <ThemedText className="text-gray-600">Already have an account?</ThemedText>
+        <Text className="text-gray-600">Already have an account?</Text>
         <Link href="/sign-in" asChild>
           <Pressable className="ml-2">
-            <ThemedText className="text-blue-600 font-semibold">Sign In</ThemedText>
+            <Text className="text-blue-600 font-semibold">Sign In</Text>
           </Pressable>
         </Link>
       </View>
