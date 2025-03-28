@@ -6,16 +6,14 @@
     "active": true,
     "exercices": [
       {
-        "id": "exercise-1",
-        "name": "Squat",
+        "exerciceId": "exercice-1",
         "reps": 10,
         "sets": 3,
         "restBetweenSets": 60,
         "restAfterExercise": 120
       },
       {
-        "id": "exercise-2",
-        "name": "Développé couché",
+        "exerciceId": "exercice-2",
         "reps": 8,
         "sets": 4,
         "restBetweenSets": 90,
@@ -30,16 +28,14 @@
     "description": "Une séance pour améliorer l'endurance cardiovasculaire.",
     "exercices": [
       {
-        "id": "exercise-3",
-        "name": "Course à pied",
+        "exerciceId": "exercice-3",
         "reps": 1,
         "sets": 1,
         "restBetweenSets": 0,
         "restAfterExercise": 180
       },
       {
-        "id": "exercise-4",
-        "name": "Cyclisme",
+        "exerciceId": "exercice-4",
         "reps": 1,
         "sets": 1,
         "restBetweenSets": 0,
@@ -54,56 +50,49 @@
     "description": "Une séance pour tester vos capacités et déterminé votre programme complet.",
     "exercices": [
       {
-        "id": "exercise-5",
-        "name": "Squat jump",
+        "exerciceId": "exercice-5",
         "reps": 10,
         "sets": 3,
         "restBetweenSets": 60,
         "restAfterExercise": 120
       },
       {
-        "id": "exercise-6",
-        "name": "CMJ",
+        "exerciceId": "exercice-6",
         "reps": 8,
         "sets": 4,
         "restBetweenSets": 90,
         "restAfterExercise": 120
       },
       {
-        "id": "exercise-7",
-        "name": "RSI flight time",
+        "exerciceId": "exercice-7",
         "reps": 5,
         "sets": 3,
         "restBetweenSets": 60,
         "restAfterExercise": 120
       },
       {
-        "id": "exercise-8",
-        "name": "RSI contact time",
+        "exerciceId": "exercice-8",
         "reps": 5,
         "sets": 3,
         "restBetweenSets": 60,
         "restAfterExercise": 120
       },
       {
-        "id": "exercise-9",
-        "name": "MB punch left",
+        "exerciceId": "exercice-9",
         "reps": 3,
         "sets": 1,
         "restBetweenSets": 60,
         "restAfterExercise": 120
       },
       {
-        "id": "exercise-10",
-        "name": "MB punch right",
+        "exerciceId": "exercice-10",
         "reps": 3,
         "sets": 1,
         "restBetweenSets": 60,
         "restAfterExercise": 120
       },
       {
-        "id": "exercise-11",
-        "name": "Test 30-15",
+        "exerciceId": "exercice-11",
         "reps": 1,
         "sets": 1,
         "restBetweenSets": 0,

@@ -1,5 +1,6 @@
 import programsJson from "@/data/programs.json";
 import sessionsJson from "@/data/sessions.json";
+import exercicesJson from "@/data/exercices.json";
 
 export const getProgramsByIds = async (ids: string[]) => {
   try {
@@ -17,7 +18,7 @@ export const getSessionById = (id: string | string[]) => {
     console.error("[error fetching program] ==>", error);
     return;
   };
-}
+};
 
 export const getSessionsByProgram = (ids: string | string[]) => {
   try {
@@ -26,4 +27,13 @@ export const getSessionsByProgram = (ids: string | string[]) => {
     console.error("[error fetching sessions] ==>", error);
     return [];
   }
-}
+};
+
+export const getExerciceById = (id: string | string[]) => {
+  try {
+    return exercicesJson.filter(exercice => exercice.id === id);
+  } catch (error) {
+    console.error("[error fetching exercice] ==>", error);
+    return [];
+  }
+};

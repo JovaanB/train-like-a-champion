@@ -1,0 +1,105 @@
+[
+  {
+    "id": "exercice-1",
+    "name": "Squat",
+    "description": "Un exercice fondamental pour renforcer les jambes et les fessiers.",
+    "instructions": [
+      "Se tenir debout avec les pieds écartés à la largeur des épaules.",
+      "Descendre en pliant les genoux comme si vous alliez vous asseoir sur une chaise.",
+      "Veillez à garder le dos droit et les genoux au-dessus des chevilles.",
+      "Remonter à la position de départ."
+    ]
+  },
+  {
+    "id": "exercice-2",
+    "name": "Développé couché",
+    "description": "Un exercice pour renforcer le haut du corps, en particulier les pectoraux.",
+    "instructions": [
+      "Allongez-vous sur un banc avec une barre au-dessus de vous.",
+      "Prenez la barre avec les mains écartées à la largeur des épaules.",
+      "Descendez la barre lentement jusqu'à votre poitrine, puis poussez-la vers le haut jusqu'à ce que vos bras soient tendus."
+    ]
+  },
+  {
+    "id": "exercice-3",
+    "name": "Course à pied",
+    "description": "Un exercice pour améliorer l'endurance cardiovasculaire.",
+    "instructions": [
+      "Courir à un rythme modéré pendant 30 minutes.",
+      "Augmenter progressivement la durée chaque semaine."
+    ]
+  },
+  {
+    "id": "exercice-4",
+    "name": "Cyclisme",
+    "description": "Un exercice pour renforcer les jambes et améliorer l'endurance.",
+    "instructions": [
+      "Faire du vélo à un rythme modéré pendant 30 minutes.",
+      "Inclure des intervalles de vitesse."
+    ]
+  },
+  {
+    "id": "exercice-5",
+    "name": "Squat jump",
+    "description": "Un exercice pliométrique pour développer la puissance.",
+    "instructions": [
+      "Effectuer un squat, puis sauter aussi haut que possible.",
+      "Atterrir doucement et répéter."
+    ]
+  },
+  {
+    "id": "exercice-6",
+    "name": "CMJ",
+    "description": "Un exercice pour mesurer la puissance des membres inférieurs.",
+    "instructions": [
+      "Effectuer un saut vertical maximal sans élan.",
+      "Mesurer la hauteur du saut."
+    ]
+  },
+  {
+    "id": "exercice-7",
+    "name": "RSI flight time",
+    "description": "Un exercice pour améliorer le temps de vol lors des sauts.",
+    "instructions": [
+      "Effectuer des sauts verticaux en se concentrant sur le temps de vol.",
+      "Enregistrer le temps de vol."
+    ]
+  },
+  {
+    "id": "exercice-8",
+    "name": "RSI contact time",
+    "description": "Un exercice pour réduire le temps de contact au sol.",
+    "instructions": [
+      "Effectuer des sauts répétés en minimisant le temps au sol.",
+      "Enregistrer le temps de contact."
+    ]
+  },
+  {
+    "id": "exercice-9",
+    "name": "MB punch left",
+    "description": "Un exercice de frappe avec un sac de frappe.",
+    "instructions": [
+      "Lancer un MB de 3kg le plus loin possible.",
+      "Calculer la distance."
+    ]
+  },
+  {
+    "id": "exercice-10",
+    "name": "MB punch right",
+    "description": "Un exercice de frappe avec un sac de frappe.",
+    "instructions": [
+      "Lancer un MB de 3kg le plus loin possible.",
+      "Calculer la distance."
+    ]
+  },
+  {
+    "id": "exercice-11",
+    "name": "Test 30-15",
+    "description": "Un test pour évaluer l'endurance.",
+    "instructions": [
+      "Courir 30 secondes, puis 15 secondes de repos.",
+      "Augmenter la vitesse de 0.5km/h à chaque tour.",
+      "Répéter jusqu'à l'épuisement."
+    ]
+  }
+]

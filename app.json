@@ -34,9 +34,7 @@
       [
         "expo-font",
         {
-          "fonts": [
-            "./assets/fonts/Kanit-Regular.ttf"
-          ]
+          "fonts": ["./assets/fonts/Kanit-Regular.ttf"]
         }
       ]
     ],

@@ -1,6 +1,5 @@
-export interface Exercice {
-    id: string;
-    name: string;
+export interface SessionExercice {
+    exerciceId: string;
     reps: number;
     sets: number;
     restBetweenSets: number;
@@ -12,5 +11,5 @@ export interface Session {
     name: string;
     description: string;
     active: boolean;
-    exercices: Exercice[];
+    exercices: SessionExercice[];
 }
