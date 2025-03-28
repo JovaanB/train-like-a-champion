@@ -2,7 +2,7 @@ import OneExercice from "@/components/OneExercice";
 import PaginationElement from "@/components/PaginationElement";
 import { ThemedText } from "@/components/ThemedText";
 import { getSessionById, getExerciceById } from "@/lib/db-services";
-import { Exercice } from "@/models/session";
+import { Exercice } from "@/models/exercice";
 import { AntDesign } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
