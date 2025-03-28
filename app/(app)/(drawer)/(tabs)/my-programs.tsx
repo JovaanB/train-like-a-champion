@@ -1,10 +1,11 @@
 import { getProgramsByIds } from "@/lib/db-services";
 import { Program } from "@/models/program";
 import { useEffect, useState } from "react";
-import { Text, ActivityIndicator, SafeAreaView } from "react-native";
+import { ActivityIndicator, SafeAreaView } from "react-native";
 import currentUser from "@/data/current-user.json";
 import ProgramCard from "@/components/ProgramCard";
 import { ScrollView } from "react-native-gesture-handler";
+import { ThemedText } from "@/components/ThemedText";
 
 const MyPrograms = () => {
   const [programs, setPrograms] = useState<Program[]>([]);
@@ -32,16 +33,16 @@ const MyPrograms = () => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <Text className="text-2xl font-bold text-gray-800 ml-6 mt-6">
+      <ThemedText className="text-2xl font-bold text-gray-800 ml-6 mt-6">
         Your programs
-      </Text>
+      </ThemedText>
       <ScrollView style={{ padding: 20 }}>
         {programs.length > 0 ? (
           programs.map((program) => {
             return <ProgramCard key={program.id} program={program} />;
           })
         ) : (
-          <Text>You don't have any programs... Contact your coach.</Text>
+          <ThemedText>You don't have any programs... Contact your coach.</ThemedText>
         )}
       </ScrollView>
     </SafeAreaView>

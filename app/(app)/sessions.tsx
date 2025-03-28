@@ -1,7 +1,6 @@
 import { getSessionsByProgram } from "@/lib/db-services";
 import { useEffect, useState } from "react";
 import {
-  Text,
   View,
   ActivityIndicator,
   SafeAreaView,
@@ -12,6 +11,7 @@ import { Session } from "@/models/session";
 import SessionCard from "@/components/SessionCard";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
+import { ThemedText } from "@/components/ThemedText";
 
 const MyPrograms = () => {
   const [sessions, setSessions] = useState<Session[]>([]);
@@ -54,7 +54,7 @@ const MyPrograms = () => {
         >
           <MaterialIcons name="arrow-circle-left" size={24} color="black" />
         </Pressable>
-        <Text className="text-2xl font-bold text-gray-800 ml-6">Sessions</Text>
+        <ThemedText className="text-2xl font-bold text-gray-800 ml-6">Sessions</ThemedText>
       </View>
       <ScrollView style={{ padding: 10 }}>
         {sessions.length > 0 ? (
@@ -62,9 +62,9 @@ const MyPrograms = () => {
             return <SessionCard key={session.id} session={session} />;
           })
         ) : (
-          <Text>
+          <ThemedText>
             There is no session in this program... Contact your coach.
-          </Text>
+          </ThemedText>
         )}
       </ScrollView>
     </SafeAreaView>

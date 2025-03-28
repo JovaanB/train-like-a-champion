@@ -1,7 +1,8 @@
 import { Program } from "@/models/program";
 import { useRouter } from "expo-router";
 import React from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, StyleSheet, Pressable } from "react-native";
+import { ThemedText } from "./ThemedText";
 
 const ProgramCard = ({ program }: { program: Program }) => {
   const router = useRouter();
@@ -9,15 +10,15 @@ const ProgramCard = ({ program }: { program: Program }) => {
   const startWorkout = () => {
     router.push({
       pathname: "/sessions",
-      params: { programSessions: program.sessions },
+      params: { programSessions: program.sessions.map((session) => session.id) },
     });
   };
 
   return (
     <Pressable onPress={startWorkout}>
       <View style={styles.card}>
-        <Text style={styles.title}>{program.name}</Text>
-        <Text style={styles.description}>{program.description}</Text>
+        <ThemedText style={styles.title}>{program.name}</ThemedText>
+        <ThemedText style={styles.description}>{program.description}</ThemedText>
       </View>
     </Pressable>
   );

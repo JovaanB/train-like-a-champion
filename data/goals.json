@@ -1,0 +1,9 @@
+[
+  {
+    "id": "goal-1",
+    "userId": "user-12345",
+    "description": "Augmenter le squat à 100kg en 3 mois",
+    "targetDate": "2024-06-01",
+    "status": "in-progress"
+  }
+]

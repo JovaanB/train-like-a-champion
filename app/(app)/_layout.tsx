@@ -1,12 +1,12 @@
-import { Text } from "react-native";
 import { Redirect, Slot } from "expo-router";
 import { useSession } from "@/context";
+import { ThemedText } from "@/components/ThemedText";
 
 export default function AppLayout() {
   const { user, isLoading } = useSession();
 
   if (isLoading) {
-    return <Text>Loading...</Text>;
+    return <ThemedText>Loading...</ThemedText>;
   }
 
   if (!user) {

@@ -1,0 +1,11 @@
+{
+  "id": "user-67890",
+  "displayName": "Coach",
+  "email": "coach@example.com",
+  "metadata": {
+    "lastSignInTime": "2023-10-01T12:00:00Z",
+    "creationTime": "2023-01-01T12:00:00Z"
+  },
+  "role": "coach",
+  "clients": ["user-12345"]
+}
