@@ -3,7 +3,7 @@
     "id": "session-1",
     "name": "Séance force",
     "description": "Une séance conçu pour améliorer la force musculaire.",
-    "active": true,
+    "status": "pending",
     "exercices": [
       {
         "exerciceId": "exercice-1",
@@ -24,7 +24,7 @@
   {
     "id": "session-2",
     "name": "Séance cardio",
-    "active": false,
+    "status": "pending",
     "description": "Une séance pour améliorer l'endurance cardiovasculaire.",
     "exercices": [
       {
@@ -46,7 +46,7 @@
   {
     "id": "session-3",
     "name": "Séance de test",
-    "active": true,
+    "status": "pending",
     "description": "Une séance pour tester vos capacités et déterminé votre programme complet.",
     "exercices": [
       {

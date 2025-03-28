@@ -9,7 +9,9 @@ const ProgramCard = ({ program }: { program: Program }) => {
   const startWorkout = () => {
     router.push({
       pathname: "/sessions",
-      params: { programSessions: program.sessions },
+      params: {
+        programSessions: program.sessions.map((session) => session.id),
+      },
     });
   };
 

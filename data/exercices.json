@@ -2,6 +2,7 @@
   {
     "id": "exercice-1",
     "name": "Squat",
+    "category": "Musculation",
     "description": "Un exercice fondamental pour renforcer les jambes et les fessiers.",
     "instructions": [
       "Se tenir debout avec les pieds écartés à la largeur des épaules.",
@@ -13,6 +14,7 @@
   {
     "id": "exercice-2",
     "name": "Développé couché",
+    "category": "Musculation",
     "description": "Un exercice pour renforcer le haut du corps, en particulier les pectoraux.",
     "instructions": [
       "Allongez-vous sur un banc avec une barre au-dessus de vous.",
@@ -23,6 +25,7 @@
   {
     "id": "exercice-3",
     "name": "Course à pied",
+    "category": "Musculation",
     "description": "Un exercice pour améliorer l'endurance cardiovasculaire.",
     "instructions": [
       "Courir à un rythme modéré pendant 30 minutes.",
@@ -32,6 +35,7 @@
   {
     "id": "exercice-4",
     "name": "Cyclisme",
+    "category": "Musculation",
     "description": "Un exercice pour renforcer les jambes et améliorer l'endurance.",
     "instructions": [
       "Faire du vélo à un rythme modéré pendant 30 minutes.",
@@ -41,6 +45,7 @@
   {
     "id": "exercice-5",
     "name": "Squat jump",
+    "category": "Musculation",
     "description": "Un exercice pliométrique pour développer la puissance.",
     "instructions": [
       "Effectuer un squat, puis sauter aussi haut que possible.",
@@ -50,6 +55,7 @@
   {
     "id": "exercice-6",
     "name": "CMJ",
+    "category": "Musculation",
     "description": "Un exercice pour mesurer la puissance des membres inférieurs.",
     "instructions": [
       "Effectuer un saut vertical maximal sans élan.",
@@ -59,6 +65,7 @@
   {
     "id": "exercice-7",
     "name": "RSI flight time",
+    "category": "Musculation",
     "description": "Un exercice pour améliorer le temps de vol lors des sauts.",
     "instructions": [
       "Effectuer des sauts verticaux en se concentrant sur le temps de vol.",
@@ -68,6 +75,7 @@
   {
     "id": "exercice-8",
     "name": "RSI contact time",
+    "category": "Musculation",
     "description": "Un exercice pour réduire le temps de contact au sol.",
     "instructions": [
       "Effectuer des sauts répétés en minimisant le temps au sol.",
@@ -77,6 +85,7 @@
   {
     "id": "exercice-9",
     "name": "MB punch left",
+    "category": "Musculation",
     "description": "Un exercice de frappe avec un sac de frappe.",
     "instructions": [
       "Lancer un MB de 3kg le plus loin possible.",
@@ -86,6 +95,7 @@
   {
     "id": "exercice-10",
     "name": "MB punch right",
+    "category": "Musculation",
     "description": "Un exercice de frappe avec un sac de frappe.",
     "instructions": [
       "Lancer un MB de 3kg le plus loin possible.",
@@ -95,6 +105,7 @@
   {
     "id": "exercice-11",
     "name": "Test 30-15",
+    "category": "Musculation",
     "description": "Un test pour évaluer l'endurance.",
     "instructions": [
       "Courir 30 secondes, puis 15 secondes de repos.",

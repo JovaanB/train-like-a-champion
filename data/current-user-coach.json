@@ -1,0 +1,7 @@
+{
+  "id": "user-67890",
+  "displayName": "Coach Alex",
+  "email": "alex@example.com",
+  "role": "coach",
+  "clients": ["user-12345", "user-54321"]
+}
