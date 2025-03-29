@@ -35,6 +35,8 @@ const OneExercice = ({
 }: Props) => {
   const { width: SCREEN_WIDTH } = useWindowDimensions();
   const [textInputFocused, setTextInputFocused] = useState(false);
+  const { name, description, sets, reps, restBetweenSets, restAfterExercise } =
+    item;
   const router = useRouter();
 
   const rnTextStyle = useAnimatedStyle(() => {
@@ -65,37 +67,60 @@ const OneExercice = ({
   }, [index, x]);
   return (
     <View style={[styles.itemContainer, { width: SCREEN_WIDTH }]}>
-      <Animated.Text style={[styles.name, rnTextStyle]}>
-        {item.name}
-      </Animated.Text>
+      <Animated.Text style={[styles.name, rnTextStyle]}>{name}</Animated.Text>
       <Animated.Text style={[styles.description, rnTextStyle]}>
-        {item.description}
+        {description}
       </Animated.Text>
       <View style={styles.bottomContainer}>
         <Animated.Text style={[styles.timer, rnTextStyle]}>
-          Temps total : {timer}
+          {timer}
         </Animated.Text>
       </View>
       <View
         style={{
           flexDirection: "row",
           justifyContent: "center",
-          alignItems: "center",
+          alignItems: "flex-end",
           gap: 10,
           margin: 20,
           marginBottom: 5,
         }}
       >
-        <TextInput
-          placeholder="Result"
-          keyboardType="numeric"
-          style={[
-            styles.textInput,
-            textInputFocused && styles.textInputFocused,
-          ]}
-          onFocus={() => setTextInputFocused(true)}
-          onBlur={() => setTextInputFocused(false)}
-        />
+        <View>
+          <Text style={{ marginTop: 5 }}>Set 1 / {sets}</Text>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              width: "80%",
+            }}
+          >
+            <TextInput
+              placeholder={`reps / ${reps}`}
+              keyboardType="numeric"
+              maxLength={3}
+              style={[
+                styles.textInput,
+                textInputFocused && styles.textInputFocused,
+                { flex: 1, marginRight: 5 },
+              ]}
+              onFocus={() => setTextInputFocused(true)}
+              onBlur={() => setTextInputFocused(false)}
+            />
+            <TextInput
+              placeholder="load (kg)"
+              keyboardType="numeric"
+              maxLength={3}
+              style={[
+                styles.textInput,
+                textInputFocused && styles.textInputFocused,
+                { flex: 1 },
+              ]}
+              onFocus={() => setTextInputFocused(true)}
+              onBlur={() => setTextInputFocused(false)}
+            />
+          </View>
+        </View>
         <Pressable
           style={styles.validateButton}
           onPress={() => {
@@ -133,14 +158,12 @@ const styles = StyleSheet.create({
   },
   timer: {
     fontWeight: "700",
-    fontSize: 18,
+    fontSize: 32,
   },
   textInput: {
-    justifyContent: "center",
     borderColor: "gray",
     borderWidth: 1,
     borderRadius: 8,
-    width: 200,
     padding: 8,
   },
   textInputFocused: {
@@ -150,8 +173,8 @@ const styles = StyleSheet.create({
   validateButton: {
     backgroundColor: "#304FFE",
     borderRadius: 8,
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -162,7 +185,6 @@ const styles = StyleSheet.create({
   },
   bottomContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
     marginTop: "auto",
