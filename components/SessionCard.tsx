@@ -1,19 +1,22 @@
 import { Session } from "@/models/session";
+import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Pressable, Text } from "react-native";
 
 const SessionCard = ({ session }: { session: Session }) => {
   const router = useRouter();
   const { name, description, status } = session;
-  console.log({ status });
+  const [startedTime, setStartedTime] = useState<number | null>(null);
   const isActive = status === "pending";
 
   const startWorkout = () => {
     if (isActive) {
+      const now = Date.now();
+      setStartedTime(now);
       router.push({
         pathname: "/(app)/start-workout/[id]",
-        params: { id: session.id },
+        params: { id: session.id, startedTime: now },
       });
     }
   };
@@ -21,14 +24,22 @@ const SessionCard = ({ session }: { session: Session }) => {
   return (
     <Pressable onPress={startWorkout} disabled={!isActive}>
       <View style={[styles.card, !isActive && styles.inactiveCard]}>
-        <Text style={[styles.title, !isActive && styles.inactiveTitle]}>
-          {name}
-        </Text>
-        <Text
-          style={[styles.description, !isActive && styles.inactiveDescription]}
-        >
-          {description}
-        </Text>
+        <View>
+          <Text style={[styles.title, !isActive && styles.inactiveTitle]}>
+            {name}
+          </Text>
+          <Text
+            style={[
+              styles.description,
+              !isActive && styles.inactiveDescription,
+            ]}
+          >
+            {description}
+          </Text>
+        </View>
+        <View>
+          <MaterialIcons name="play-circle-outline" size={32} />
+        </View>
       </View>
     </Pressable>
   );
@@ -36,6 +47,9 @@ const SessionCard = ({ session }: { session: Session }) => {
 
 const styles = StyleSheet.create({
   card: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
     backgroundColor: "#fff",
     padding: 16,
     marginVertical: 8,

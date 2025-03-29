@@ -1,7 +1,7 @@
 import OneExercice from "@/components/OneExercice";
 import PaginationElement from "@/components/PaginationElement";
 import { getSessionById, getExerciceById } from "@/lib/db-services";
-import { Exercice } from "@/models/session";
+import { Exercice } from "@/models/exercice";
 import { AntDesign } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
@@ -22,6 +22,7 @@ import Animated, {
   useAnimatedRef,
   useAnimatedScrollHandler,
   useSharedValue,
+  runOnJS,
 } from "react-native-reanimated";
 
 interface AppProps {
@@ -29,10 +30,30 @@ interface AppProps {
 }
 
 export default function App() {
-  const { id: sessionId } = useLocalSearchParams();
+  const { id: sessionId, startedTime } = useLocalSearchParams();
   const [exercices, setExercices] = useState<Exercice[]>([]);
-  const [result, setResult] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+
+  const [elapsedTime, setElapsedTime] = useState("00");
+
+  useEffect(() => {
+    if (startedTime) {
+      const timer = setInterval(() => {
+        const totalSeconds = Math.floor((Date.now() - +startedTime) / 1000);
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+        const formattedTime = `${hours > 0 ? String(hours) : ""}${
+          hours > 0 ? ":" : ""
+        }${minutes > 0 ? String(minutes).padStart(2, "0") : ""}${
+          minutes > 0 ? ":" : ""
+        }${String(seconds).padStart(2, "0")}`;
+        runOnJS(setElapsedTime)(formattedTime);
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }
+  }, [startedTime]);
 
   useEffect(() => {
     const fetchPrograms = async () => {
@@ -67,7 +88,6 @@ export default function App() {
       image: ImageURISource;
     }>
   >();
-  const [textInputFocused, setTextInputFocused] = useState(false);
 
   const onViewableItemsChanged = useCallback(
     ({ viewableItems }: { viewableItems: ViewToken[] }) => {
@@ -83,9 +103,22 @@ export default function App() {
 
   const renderItem = useCallback(
     ({ item, index }: { item: Exercice; index: number }) => {
-      return <OneExercice item={item} index={index} x={x} />;
+      return (
+        <OneExercice
+          item={item}
+          index={index}
+          x={x}
+          timer={elapsedTime}
+          isLastExercice={flatListIndex.value === exercices.length - 1}
+          scrollToNextExercice={() => {
+            flatListRef?.current?.scrollToIndex({
+              index: flatListIndex.value + 1,
+            });
+          }}
+        />
+      );
     },
-    [x]
+    [x, elapsedTime]
   );
 
   if (isLoading) {
@@ -115,40 +148,6 @@ export default function App() {
           showsHorizontalScrollIndicator={false}
           onViewableItemsChanged={onViewableItemsChanged}
         />
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 5,
-            marginBottom: 10,
-          }}
-        >
-          <TextInput
-            placeholder="Result"
-            keyboardType="numeric"
-            style={[
-              styles.textInput,
-              textInputFocused && styles.textInputFocused,
-            ]}
-            onFocus={() => setTextInputFocused(true)}
-            onBlur={() => setTextInputFocused(false)}
-          />
-          <Pressable
-            style={styles.validateButton}
-            onPress={() => {
-              if (flatListIndex.value === exercices.length - 1) {
-                return router.back();
-              } else {
-                flatListRef?.current?.scrollToIndex({
-                  index: flatListIndex.value + 1,
-                });
-              }
-            }}
-          >
-            <Text style={styles.validateButtonText}>Valider</Text>
-          </Pressable>
-        </View>
         <PaginationElement length={exercices.length} x={x} />
       </SafeAreaView>
     </KeyboardAvoidingView>
@@ -164,32 +163,6 @@ const styles = StyleSheet.create({
   closeBtn: {
     marginLeft: "auto",
     margin: 16,
-  },
-
-  textInput: {
-    justifyContent: "center",
-    borderColor: "gray",
-    borderWidth: 1,
-    borderRadius: 8,
-    width: 200,
-    padding: 8,
-  },
-  textInputFocused: {
-    borderColor: "#304FFE",
-    borderWidth: 2,
-  },
-  validateButton: {
-    backgroundColor: "#304FFE",
-    borderRadius: 8,
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  validateButtonText: {
-    color: "white",
-    fontWeight: "600",
-    fontSize: 14,
   },
   bottomContainer: {
     flexDirection: "row",
