@@ -1,10 +1,14 @@
+interface SetsDetails {
+    reps: number;
+    load: number;
+}
+
 export interface Exercice {
     id: string;
     name: string;
     description: string;
     instructions: string[];
-    sets: number;
-    reps: number;
+    setsDetails: SetsDetails[];
     restBetweenSets: number;
     restAfterExercise: number;
 }

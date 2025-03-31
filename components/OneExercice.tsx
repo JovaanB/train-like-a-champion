@@ -12,6 +12,7 @@ import Animated, {
   interpolate,
   useAnimatedStyle,
   SharedValue,
+  runOnJS,
 } from "react-native-reanimated";
 import { Exercice } from "@/models/exercice";
 import { useRouter } from "expo-router";
@@ -34,8 +35,10 @@ const OneExercice = ({
   timer,
 }: Props) => {
   const { width: SCREEN_WIDTH } = useWindowDimensions();
+  const [currentSet, setCurrentSet] = useState(0);
+  const [restTime, setRestTime] = useState(0);
   const [textInputFocused, setTextInputFocused] = useState(false);
-  const { name, description, sets, reps, restBetweenSets, restAfterExercise } =
+  const { name, description, setsDetails, restBetweenSets, restAfterExercise } =
     item;
   const router = useRouter();
 
@@ -86,52 +89,94 @@ const OneExercice = ({
           marginBottom: 5,
         }}
       >
-        <View>
-          <Text style={{ marginTop: 5 }}>Set 1 / {sets}</Text>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              width: "80%",
-            }}
-          >
-            <TextInput
-              placeholder={`reps / ${reps}`}
-              keyboardType="numeric"
-              maxLength={3}
-              style={[
-                styles.textInput,
-                textInputFocused && styles.textInputFocused,
-                { flex: 1, marginRight: 5 },
-              ]}
-              onFocus={() => setTextInputFocused(true)}
-              onBlur={() => setTextInputFocused(false)}
-            />
-            <TextInput
-              placeholder="load (kg)"
-              keyboardType="numeric"
-              maxLength={3}
-              style={[
-                styles.textInput,
-                textInputFocused && styles.textInputFocused,
-                { flex: 1 },
-              ]}
-              onFocus={() => setTextInputFocused(true)}
-              onBlur={() => setTextInputFocused(false)}
-            />
+        {setsDetails.length > 0 && currentSet < setsDetails.length && (
+          <View>
+            <Text style={{ marginTop: 5 }}>
+              Set {currentSet + 1} / {setsDetails.length}
+            </Text>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                width: "80%",
+              }}
+            >
+              <TextInput
+                placeholder={`reps / ${setsDetails[currentSet].reps}`}
+                keyboardType="numeric"
+                maxLength={3}
+                style={[
+                  styles.textInput,
+                  textInputFocused && styles.textInputFocused,
+                  { flex: 1, marginRight: 5 },
+                ]}
+                onFocus={() => setTextInputFocused(true)}
+                onBlur={() => setTextInputFocused(false)}
+              />
+              <TextInput
+                placeholder={`load / ${setsDetails[currentSet].load}`}
+                keyboardType="numeric"
+                maxLength={3}
+                style={[
+                  styles.textInput,
+                  textInputFocused && styles.textInputFocused,
+                  { flex: 1 },
+                ]}
+                onFocus={() => setTextInputFocused(true)}
+                onBlur={() => setTextInputFocused(false)}
+              />
+            </View>
           </View>
-        </View>
+        )}
         <Pressable
-          style={styles.validateButton}
+          style={[
+            styles.validateButton,
+            restTime > 0 && styles.validateButtonDisabled,
+          ]}
+          disabled={restTime > 0}
           onPress={() => {
+            setRestTime(0);
+            if (currentSet < setsDetails.length - 1) {
+              if (restBetweenSets > 0) {
+                const restTimer = setInterval(() => {
+                  setRestTime((prevTime) => {
+                    if (prevTime <= 0) {
+                      clearInterval(restTimer);
+                      return 0;
+                    }
+                    return prevTime - 1;
+                  });
+                }, 1000);
+                setRestTime(restBetweenSets);
+              }
+              const newCurrentSet = currentSet + 1;
+              runOnJS(setCurrentSet)(newCurrentSet);
+              return setCurrentSet((prevCurrentSet) => prevCurrentSet + 1);
+            }
             if (isLastExercice) {
               return router.back();
             } else {
-              scrollToNextExercice();
+              if (restAfterExercise > 0) {
+                const restTimer = setInterval(() => {
+                  console.log("ICI????");
+                  setRestTime((prevTime) => {
+                    if (prevTime <= 0) {
+                      clearInterval(restTimer);
+                      return 0;
+                    }
+                    return prevTime - 1;
+                  });
+                }, 1000);
+                setRestTime(restAfterExercise);
+                scrollToNextExercice();
+                return clearInterval(restTimer);
+              }
             }
           }}
         >
-          <Text style={styles.validateButtonText}>Valider</Text>
+          <Text style={styles.validateButtonText} disabled={restTime > 0}>
+            {restTime > 0 ? restTime : "Valider"}
+          </Text>
         </Pressable>
       </View>
     </View>
@@ -172,6 +217,14 @@ const styles = StyleSheet.create({
   },
   validateButton: {
     backgroundColor: "#304FFE",
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  validateButtonDisabled: {
+    backgroundColor: "#B0BEC5",
     borderRadius: 8,
     paddingVertical: 10,
     paddingHorizontal: 20,

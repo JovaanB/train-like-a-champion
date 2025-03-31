@@ -13,9 +13,6 @@ import {
   Pressable,
   SafeAreaView,
   StyleSheet,
-  TextInput,
-  Text,
-  View,
   ViewToken,
 } from "react-native";
 import Animated, {

@@ -7,15 +7,20 @@
     "exercices": [
       {
         "exerciceId": "exercice-1",
-        "reps": 10,
-        "sets": 3,
-        "restBetweenSets": 60,
-        "restAfterExercise": 120
+        "setsDetails": [
+          { "reps": 8, "load": 80 },
+          { "reps": 10, "load": 85 },
+          { "reps": 12, "load": 90 }
+        ],
+        "restBetweenSets": 3,
+        "restAfterExercise": 5
       },
       {
         "exerciceId": "exercice-2",
-        "reps": 8,
-        "sets": 4,
+        "setsDetails": [
+          { "reps": 8, "load": 40 },
+          { "reps": 10, "load": 25 }
+        ],
         "restBetweenSets": 90,
         "restAfterExercise": 120
       }
@@ -29,15 +34,21 @@
     "exercices": [
       {
         "exerciceId": "exercice-3",
-        "reps": 1,
-        "sets": 1,
+        "setsDetails": [
+          { "reps": 10, "load": 80 },
+          { "reps": 10, "load": 85 },
+          { "reps": 10, "load": 90 }
+        ],
         "restBetweenSets": 0,
         "restAfterExercise": 180
       },
       {
         "exerciceId": "exercice-4",
-        "reps": 1,
-        "sets": 1,
+        "setsDetails": [
+          { "reps": 10, "load": 80 },
+          { "reps": 10, "load": 85 },
+          { "reps": 10, "load": 90 }
+        ],
         "restBetweenSets": 0,
         "restAfterExercise": 180
       }
@@ -51,50 +62,71 @@
     "exercices": [
       {
         "exerciceId": "exercice-5",
-        "reps": 10,
-        "sets": 3,
+        "setsDetails": [
+          { "reps": 10, "load": 80 },
+          { "reps": 10, "load": 85 },
+          { "reps": 10, "load": 90 }
+        ],
         "restBetweenSets": 60,
         "restAfterExercise": 120
       },
       {
         "exerciceId": "exercice-6",
-        "reps": 8,
-        "sets": 4,
+        "setsDetails": [
+          { "reps": 10, "load": 80 },
+          { "reps": 10, "load": 85 },
+          { "reps": 10, "load": 90 }
+        ],
         "restBetweenSets": 90,
         "restAfterExercise": 120
       },
       {
         "exerciceId": "exercice-7",
-        "reps": 5,
-        "sets": 3,
+        "setsDetails": [
+          { "reps": 10, "load": 80 },
+          { "reps": 10, "load": 85 },
+          { "reps": 10, "load": 90 }
+        ],
         "restBetweenSets": 60,
         "restAfterExercise": 120
       },
       {
         "exerciceId": "exercice-8",
-        "reps": 5,
-        "sets": 3,
+        "setsDetails": [
+          { "reps": 10, "load": 80 },
+          { "reps": 10, "load": 85 },
+          { "reps": 10, "load": 90 }
+        ],
         "restBetweenSets": 60,
         "restAfterExercise": 120
       },
       {
         "exerciceId": "exercice-9",
-        "reps": 3,
-        "sets": 1,
+        "setsDetails": [
+          { "reps": 10, "load": 80 },
+          { "reps": 10, "load": 85 },
+          { "reps": 10, "load": 90 }
+        ],
         "restBetweenSets": 60,
         "restAfterExercise": 120
       },
       {
         "exerciceId": "exercice-10",
-        "reps": 3,
-        "sets": 1,
+        "setsDetails": [
+          { "reps": 10, "load": 80 },
+          { "reps": 10, "load": 85 },
+          { "reps": 10, "load": 90 }
+        ],
         "restBetweenSets": 60,
         "restAfterExercise": 120
       },
       {
         "exerciceId": "exercice-11",
-        "reps": 1,
-        "sets": 1,
+        "setsDetails": [
+          { "reps": 10, "load": 80 },
+          { "reps": 10, "load": 85 },
+          { "reps": 10, "load": 90 }
+        ],
         "restBetweenSets": 0,
         "restAfterExercise": 180
       }
