@@ -1,31 +1,51 @@
-import { StyleSheet } from 'react-native';
+import { useRouter } from 'expo-router'
+import { useAppStore } from '../../stores/useAppStore'
+import { Box } from '@/components/ui/box'
+import { Button } from '@/components/ui/button'
+import { VStack } from '@/components/ui/vstack'
+import { Text } from '@/components/ui/text'
+import { Center } from '@/components/ui/center'
 
-import EditScreenInfo from '@/components/EditScreenInfo';
-import { Text, View } from '@/components/Themed';
+export default function Home() {
+  const router = useRouter()
+  const setUserRole = useAppStore((state) => state.setUserRole)
 
-export default function TabOneScreen() {
+  const handleSelectRole = (role: 'coach' | 'client') => {
+    setUserRole(role)
+    router.push(`/${role}`)
+  }
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
-    </View>
-  );
-}
+    <Box className='mt-24 p-4'>
+      <Center>
+        <VStack space="lg">
+          <Text size="4xl" bold>
+            Train like a Champion
+          </Text>
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});
+          <Text className='m-auto'>
+            Choisissez votre rôle pour commencer :
+          </Text>
+
+          <Button
+            size="lg"
+            variant="outline"
+            action="primary"
+            onPress={() => handleSelectRole('coach')}
+          >
+            <Text>Je suis Coach</Text>
+          </Button>
+
+          <Button
+            size="lg"
+            variant="outline"
+            action="primary"
+            onPress={() => handleSelectRole('client')}
+          >
+            <Text>Je suis Client</Text>
+          </Button>
+        </VStack>
+      </Center>
+    </Box>
+  )
+}
