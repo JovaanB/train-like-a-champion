@@ -12,12 +12,12 @@ import { Exercise, Session } from '@/stores/useSessionStore'
 
 type SessionFormProps = {
     onSubmit: (data: Omit<Session, "createdAt, id"> | { name: string; exercises: Exercise[]; tags: string[]; }) => void
-    initialData?: { name: string; exercises: Exercise[] }
+    initialData?: { name: string; exercises: Exercise[], tags: string[] }
 }
 
 export default function SessionForm({ onSubmit, initialData }: SessionFormProps) {
     const [sessionName, setSessionName] = useState(initialData?.name || '')
-    const [tags, setTags] = useState<string[]>([]);
+    const [tags, setTags] = useState<string[]>(initialData?.tags || []);
     const [exercises, setExercises] = useState<Exercise[]>(initialData?.exercises || [])
 
     const handleAddExercise = () => {

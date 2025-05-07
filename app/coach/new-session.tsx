@@ -24,7 +24,7 @@ const NewSession = () => {
                 <VStack space="md">
                     <BackButtonWithTitle title="Créer une nouvelle séance" />
                     <ScrollView className="mb-4">
-                        <SessionForm initialData={model ? { name: model.name + " (copie)", exercises: model.exercises } : undefined} onSubmit={addSession} />
+                        <SessionForm initialData={model ? { name: model.name + " (copie)", tags: model.tags, exercises: model.exercises } : undefined} onSubmit={addSession} />
                         <Button className="mt-2" action="primary" variant="outline" onPress={() => router.push("/sessions/templates")}>
                             <Text>📋 Créer depuis un modèle</Text>
                         </Button>

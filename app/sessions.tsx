@@ -6,11 +6,10 @@ import { Text } from "@/components/ui/text"
 import { VStack } from "@/components/ui/vstack"
 import { useSessionStore } from "@/stores/useSessionStore"
 import { MaterialIcons } from "@expo/vector-icons"
-import { Link, useRouter } from "expo-router"
-import { Alert, Pressable, SafeAreaView, ScrollView } from "react-native"
+import { Link } from "expo-router"
+import { Alert, SafeAreaView, ScrollView } from "react-native"
 
 export default function SessionsPage() {
-    const router = useRouter();
     const sessions = useSessionStore((state) => state.sessions)
     const deleteSession = useSessionStore((state) => state.deleteSession)
 
