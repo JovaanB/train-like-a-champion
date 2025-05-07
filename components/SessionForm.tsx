@@ -1,25 +1,27 @@
+import "react-native-get-random-values"
 import { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+
 import { Box } from '@/components/ui/box'
 import { Text } from '@/components/ui/text'
 import { Input, InputField } from '@/components/ui/input'
 import { Button } from './ui/button'
 import { VStack } from './ui/vstack'
 import { Alert } from 'react-native'
-import { Exercise } from '@/stores/useSessionStore'
-import { useSessionStore } from '@/stores/useSessionStore'
+import { Exercise, Session } from '@/stores/useSessionStore'
 
 type SessionFormProps = {
-    onSubmit: (data: { name: string; exercises: Exercise[] }) => void
+    onSubmit: (data: Omit<Session, "createdAt, id"> | { name: string; exercises: Exercise[]; tags: string[]; }) => void
+    initialData?: { name: string; exercises: Exercise[] }
 }
 
-export default function SessionForm({ onSubmit }: SessionFormProps) {
-    const [sessionName, setSessionName] = useState('')
-    const [exercises, setExercises] = useState<Exercise[]>([])
-
-    const addSession = useSessionStore((state) => state.addSession)
+export default function SessionForm({ onSubmit, initialData }: SessionFormProps) {
+    const [sessionName, setSessionName] = useState(initialData?.name || '')
+    const [tags, setTags] = useState<string[]>([]);
+    const [exercises, setExercises] = useState<Exercise[]>(initialData?.exercises || [])
 
     const handleAddExercise = () => {
-        setExercises([...exercises, { name: '', reps: '', weight: '' }])
+        setExercises([...exercises, { id: uuidv4(), name: '', reps: '', weight: '' }])
     }
 
     const handleExerciseChange = (index: number, field: keyof Exercise, value: string) => {
@@ -65,10 +67,11 @@ export default function SessionForm({ onSubmit }: SessionFormProps) {
                 {
                     text: 'Confirmer',
                     onPress: () => {
-                        addSession({ name: sessionName, exercises })
+                        onSubmit({ name: sessionName, exercises, tags })
                         Alert.alert('Succès', 'Séance enregistrée ✅')
-                        setSessionName('')
                         setExercises([])
+                        setSessionName("")
+                        setTags([])
                     }
                 },
             ]
@@ -78,13 +81,19 @@ export default function SessionForm({ onSubmit }: SessionFormProps) {
     return (
         <Box>
             <VStack space='xl'>
-                <Text size="2xl" bold>Créer une nouvelle séance</Text>
-
                 <Input variant="outline" size="md">
                     <InputField
                         placeholder="Nom de la séance"
                         value={sessionName}
                         onChangeText={setSessionName}
+                    />
+                </Input>
+
+                <Input>
+                    <InputField
+                        placeholder="Tags (ex: force, cardio, débutant)"
+                        value={tags.join(', ')}
+                        onChangeText={(text) => setTags(text.split(',').map((t) => t.trim()))}
                     />
                 </Input>
 
@@ -120,8 +129,8 @@ export default function SessionForm({ onSubmit }: SessionFormProps) {
                     <Text>Ajouter un exercice</Text>
                 </Button>
 
-                <Button onPress={handleSubmit} variant='outline' action='positive'>
-                    <Text>Valider</Text>
+                <Button onPress={handleSubmit} variant='solid' action='positive'>
+                    <Text className='text-white'>Valider</Text>
                 </Button>
             </VStack>
         </Box>
