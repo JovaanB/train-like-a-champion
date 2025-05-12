@@ -7,9 +7,8 @@ import { SafeAreaView } from "react-native"
 import BackButtonWithTitle from "@/components/BackButtonWithTitle"
 
 export default function EditSessionPage() {
-    const { id } = useLocalSearchParams()
-    const sessionIndex = Number(id)
-    const session = useSessionStore((s) => s.sessions[sessionIndex])
+    const { id }: { id: string } = useLocalSearchParams()
+    const session = useSessionStore((s) => s.sessions.find((s) => s.id === id))
     const updateSession = useSessionStore((s) => s.updateSession)
     const router = useRouter()
 
@@ -22,7 +21,7 @@ export default function EditSessionPage() {
     }
 
     const handleUpdate = (data: Omit<Session, "createdAt, id">) => {
-        updateSession(sessionIndex, data)
+        updateSession(id, data)
         router.back()
     }
 
@@ -33,6 +32,7 @@ export default function EditSessionPage() {
                 <SessionForm
                     initialData={{
                         name: session.name,
+                        tags: session.tags,
                         exercises: session.exercises
                     }}
                     onSubmit={handleUpdate}

@@ -16,7 +16,7 @@ const NewSession = () => {
 
     const router = useRouter();
 
-    const model = typeof template === "string" ? sessions[parseInt(template)] : null
+    const model = typeof template === "string" ? sessions.find(session => session.id === template) : null
 
     return (
         <SafeAreaView>

@@ -11,8 +11,7 @@ export default function SessionDetailPage() {
     const { id } = useLocalSearchParams()
     const router = useRouter()
 
-    const sessionIndex = Number(id)
-    const session = useSessionStore((state) => state.sessions[sessionIndex])
+    const session = useSessionStore((state) => state.sessions.find((s) => s.id === id))
     const duplicateSession = useSessionStore((state) => state.duplicateSession)
     const deleteSession = useSessionStore((state) => state.deleteSession)
 
@@ -48,14 +47,13 @@ export default function SessionDetailPage() {
                         variant="outline"
                         action="secondary"
                         onPress={() => {
-                            duplicateSession(sessionIndex)
-                            const newIndex = useSessionStore.getState().sessions.length - 1
-                            router.replace(`/sessions/${newIndex}`)
+                            duplicateSession(session.id)
+                            router.replace(`/sessions`)
                         }}
                     >
                         <Text>📄 Dupliquer cette séance</Text>
                     </Button>
-                    <Button action="secondary" variant="solid" onPress={() => router.push(`/sessions/${sessionIndex}/edit`)}>
+                    <Button action="secondary" variant="solid" onPress={() => router.push(`/sessions/${session.id}/edit`)}>
                         <Text>✏️ Modifier la séance</Text>
                     </Button>
                     <Button
@@ -71,7 +69,8 @@ export default function SessionDetailPage() {
                                         text: "Supprimer",
                                         style: "destructive",
                                         onPress: () => {
-                                            deleteSession(sessionIndex)
+                                            deleteSession(session.id)
+                                            Alert.alert("Séance supprimée", "La séance a été supprimée avec succès.")
                                             router.back()
                                         }
                                     }

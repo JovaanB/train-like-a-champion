@@ -22,9 +22,9 @@ export type Session = {
 type SessionStore = {
     sessions: Session[]
     addSession: (session: Omit<Session, 'createdAt, id'>) => void
-    updateSession: (index: number, updated: Omit<Session, 'createdAt, id'>) => void
-    deleteSession: (index: number) => void
-    duplicateSession: (index: number) => void
+    updateSession: (sessionId: string, updated: Omit<Session, 'createdAt, id'>) => void
+    deleteSession: (sessionId: string) => void
+    duplicateSession: (sessionId: string) => void
     clearSessions: () => void
 }
 
@@ -40,32 +40,33 @@ export const useSessionStore = create<SessionStore>()(
                         createdAt: new Date()
                     }],
                 })),
-            updateSession: (index, updated) =>
+            updateSession: (sessionId, updated) =>
                 set((state) => {
-                    const sessions = [...state.sessions]
-                    sessions[index] = { ...updated, createdAt: state.sessions[index].createdAt }
-                    return { sessions }
+                    const updatedSessions = state.sessions.map((session) =>
+                        session.id === sessionId
+                            ? { ...session, ...updated }
+                            : session
+                    );
+                    return { sessions: updatedSessions };
                 }),
-            deleteSession: (index) =>
+            deleteSession: (sessionId) =>
                 set((state) => {
-                    const updated = [...state.sessions]
-                    updated.splice(index, 1)
+                    const updated = [...state.sessions].filter(session => session.id !== sessionId);
                     return { sessions: updated }
                 }),
-            duplicateSession: (index: number) =>
+            duplicateSession: (sessionId: string) =>
                 set((state) => {
-                    const original = state.sessions[index]
-                    if (!original) return {}
+                    const original = state.sessions.find(session => session.id === sessionId);
+                    if (!original) return state;
 
                     const duplicated = {
+                        ...original,
                         id: uuidv4(),
-                        name: original.name + " (copie)",
+                        name: `${original.name} (copy)`,
                         createdAt: new Date(),
-                        exercises: original.exercises,
-                        tags: original.tags
-                    }
+                    };
 
-                    return { sessions: [...state.sessions, duplicated] }
+                    return { sessions: [...state.sessions, duplicated] };
                 }),
             clearSessions: () => set({ sessions: [] }),
         }),

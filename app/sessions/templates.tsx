@@ -5,40 +5,39 @@ import { Text } from "@/components/ui/text"
 import { Button } from "@/components/ui/button"
 import { VStack } from "@/components/ui/vstack"
 import { SafeAreaView, ScrollView } from "react-native"
-import { useState } from "react"
-import { Input, InputField } from "@/components/ui/input"
+import { groupByTags } from "@/utils/groupByTags"
+import BackButtonWithTitle from "@/components/BackButtonWithTitle"
 
 export default function TemplatesPage() {
     const sessions = useSessionStore((state) => state.sessions)
     const router = useRouter()
 
-    const [filter, setFilter] = useState("")
-
-    const filteredSessions = sessions.filter((s) =>
-        !filter ? true : s.tags?.includes(filter.toLowerCase())
-    )
+    const grouped = groupByTags(sessions)
 
     return (
         <SafeAreaView>
             <Box className="p-4">
-                <Text className="mb-2" size="xl" bold>Sélectionner un modèle</Text>
-                <Input>
-                    <InputField
-                        placeholder="Filtrer par tag"
-                        value={filter}
-                        onChangeText={(text) => setFilter(text.toLowerCase())}
-                    />
-                </Input>
+                <BackButtonWithTitle title="Sélectionner un modèle" />
                 <ScrollView>
                     <VStack space="md" className="mt-4">
-                        {filteredSessions.map((s, idx) => (
-                            <Button
-                                key={idx}
-                                variant="outline"
-                                onPress={() => router.push(`/coach/new-session?template=${idx}`)}
-                            >
-                                <Text>{s.name}</Text>
-                            </Button>
+                        {Object.entries(grouped).map(([tag, list]) => (
+                            <Box key={tag} className="mt-6">
+                                <Text size="xl" bold className="mb-2">{tag}</Text>
+                                <Box className="flex-row flex-wrap gap-2">
+                                    {list.map((s) => (
+                                        <Button
+                                            key={s.id}
+                                            size="sm"
+                                            variant="outline"
+                                            action="positive"
+                                            onPress={() => router.push(`/coach/new-session?template=${s.id}`)}
+                                            style={{ margin: 4, width: "48%" }}
+                                        >
+                                            <Text numberOfLines={1}>{s.name}</Text>
+                                        </Button>
+                                    ))}
+                                </Box>
+                            </Box>
                         ))}
                     </VStack>
                 </ScrollView>

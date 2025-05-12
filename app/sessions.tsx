@@ -24,7 +24,7 @@ export default function SessionsPage() {
                             <Text>Aucune séance enregistrée.</Text>
                         ) : (
                             sessions.map((session, idx) => (
-                                <Link key={idx} href={`/sessions/${idx}`}>
+                                <Link key={idx} href={`/sessions/${session.id}`}>
                                     <Box className="p-4 w-full border rounded border-neutral-200 shadow-lg">
                                         <HStack>
                                             <Text bold>{session.name}</Text>
@@ -41,7 +41,7 @@ export default function SessionsPage() {
                                                             {
                                                                 text: 'Supprimer',
                                                                 style: 'destructive',
-                                                                onPress: () => deleteSession(idx),
+                                                                onPress: () => deleteSession(session.id),
                                                             },
                                                         ]
                                                     )
