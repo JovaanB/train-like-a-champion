@@ -3,12 +3,12 @@ import { Box } from "@/components/ui/box";
 import { Text } from "@/components/ui/text";
 import { SafeAreaView } from "react-native";
 
-const Profile = () => {
+const ClientProfile = () => {
   return (
     <SafeAreaView>
       <Box className="p-4">
         <Text size="xl" bold>
-          Profil du coach
+          Profil du client
         </Text>
         <LogoutButton />
       </Box>
@@ -16,4 +16,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default ClientProfile;

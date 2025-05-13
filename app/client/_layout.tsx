@@ -2,9 +2,9 @@ import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { useUserStore } from "@/stores/useUserStore";
 
-export default function CoachLayout() {
+export default function ClientLayout() {
   const role = useUserStore(state => state.role);
-  const isCoach = role === "coach";
+  const isClient = role === "client";
 
   return (
     <Tabs
@@ -13,19 +13,12 @@ export default function CoachLayout() {
         tabBarActiveTintColor: "#000",
       }}
     >
-      <Tabs.Protected guard={isCoach}>
+      <Tabs.Protected guard={isClient}>
         <Tabs.Screen
           name="dashboard"
           options={{
             title: "Dashboard",
             tabBarIcon: ({ color, size }) => <Ionicons name="grid" size={size} color={color} />,
-          }}
-        />
-        <Tabs.Screen
-          name="new-session"
-          options={{
-            title: "Séance",
-            tabBarIcon: ({ color, size }) => <Ionicons name="create" size={size} color={color} />,
           }}
         />
         <Tabs.Screen
