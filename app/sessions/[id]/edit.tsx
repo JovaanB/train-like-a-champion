@@ -1,10 +1,11 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { Session, useSessionStore } from "@/stores/useSessionStore";
+import { useSessionStore } from "@/stores/useSessionStore";
 import { Box } from "@/components/ui/box";
 import { Text } from "@/components/ui/text";
 import SessionForm from "@/components/SessionForm";
-import { KeyboardAvoidingView, Platform, SafeAreaView, ScrollView } from "react-native";
 import BackButtonWithTitle from "@/components/BackButtonWithTitle";
+import AppLayout from "@/components/AppLayout";
+import { Session } from "@/types/session";
 
 export default function EditSessionPage() {
   const { id }: { id: string } = useLocalSearchParams();
@@ -26,25 +27,18 @@ export default function EditSessionPage() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
-        style={{ flex: 1 }}
-      >
-        <ScrollView contentContainerStyle={{ padding: 16 }} showsVerticalScrollIndicator={false}>
-          <Box className="p-4">
-            <BackButtonWithTitle title="Modification" />
-            <SessionForm
-              initialData={{
-                name: session.name,
-                tags: session.tags,
-                exercises: session.exercises,
-              }}
-              onSubmit={handleUpdate}
-            />
-          </Box>
-        </ScrollView>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+    <AppLayout>
+      <Box className="p-4">
+        <BackButtonWithTitle title="Modification" />
+        <SessionForm
+          initialData={{
+            name: session.name,
+            tags: session.tags,
+            exercises: session.exercises,
+          }}
+          onSubmit={handleUpdate}
+        />
+      </Box>
+    </AppLayout>
   );
 }

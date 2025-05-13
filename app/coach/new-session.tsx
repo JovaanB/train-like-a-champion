@@ -6,8 +6,8 @@ import { Text } from "@/components/ui/text";
 import { VStack } from "@/components/ui/vstack";
 import { useSessionStore } from "@/stores/useSessionStore";
 import { Link } from "expo-router";
-import { SafeAreaView, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
 import { Button } from "@/components/ui/button";
+import AppLayout from "@/components/AppLayout";
 
 const NewSession = () => {
   const { template } = useLocalSearchParams();
@@ -19,41 +19,34 @@ const NewSession = () => {
     typeof template === "string" ? sessions.find(session => session.id === template) : null;
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
-        style={{ flex: 1 }}
-      >
-        <ScrollView contentContainerStyle={{ padding: 16 }} showsVerticalScrollIndicator={false}>
-          <VStack space="md">
-            <BackButtonWithTitle title="Créer une nouvelle séance" />
-            <SessionForm
-              initialData={
-                model
-                  ? {
-                      name: model.name + " (copie)",
-                      tags: model.tags,
-                      exercises: model.exercises,
-                    }
-                  : undefined
-              }
-              onSubmit={addSession}
-            />
-            <Button
-              className="mt-1"
-              action="primary"
-              variant="outline"
-              onPress={() => router.push("/sessions/templates")}
-            >
-              <Text>📋 Créer depuis un modèle</Text>
-            </Button>
-            <Link href="/sessions">
-              <Text className="text-center mt-2">Voir toutes les séances ({sessions.length})</Text>
-            </Link>
-          </VStack>
-        </ScrollView>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+    <AppLayout>
+      <VStack space="md">
+        <BackButtonWithTitle title="Créer une nouvelle séance" />
+        <SessionForm
+          initialData={
+            model
+              ? {
+                  name: model.name + " (copie)",
+                  tags: model.tags,
+                  exercises: model.exercises,
+                }
+              : undefined
+          }
+          onSubmit={addSession}
+        />
+        <Button
+          className="mt-1"
+          action="primary"
+          variant="outline"
+          onPress={() => router.push("/sessions/templates")}
+        >
+          <Text>📋 Créer depuis un modèle</Text>
+        </Button>
+        <Link href="/sessions">
+          <Text className="text-center mt-2">Voir toutes les séances ({sessions.length})</Text>
+        </Link>
+      </VStack>
+    </AppLayout>
   );
 };
 
