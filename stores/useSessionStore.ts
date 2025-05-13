@@ -3,21 +3,7 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { v4 as uuidv4 } from "uuid";
-
-export type Exercise = {
-  id: string;
-  name: string;
-  reps: string;
-  weight: string;
-};
-
-export type Session = {
-  id: string;
-  name: string;
-  createdAt: Date;
-  exercises: Exercise[];
-  tags?: string[];
-};
+import { Session } from "@/types/session";
 
 type SessionStore = {
   sessions: Session[];

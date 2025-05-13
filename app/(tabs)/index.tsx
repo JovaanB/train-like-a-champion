@@ -12,7 +12,6 @@ export default function Home() {
 
   const handleSelectRole = (role: "coach" | "client") => {
     setUserRole(role);
-    console.log("Selected role:", role);
     router.push(`/${role}`);
   };
 

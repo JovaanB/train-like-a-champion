@@ -1,8 +1,7 @@
 import { create } from "zustand";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createJSONStorage, persist } from "zustand/middleware";
-
-type Role = "coach" | "client";
+import { Role } from "@/types/role";
 
 type UserStore = {
   role: Role | null;

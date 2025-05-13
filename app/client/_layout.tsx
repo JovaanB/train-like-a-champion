@@ -15,7 +15,7 @@ export default function ClientLayout() {
     >
       <Tabs.Protected guard={isClient}>
         <Tabs.Screen
-          name="dashboard"
+          name="index"
           options={{
             title: "Dashboard",
             tabBarIcon: ({ color, size }) => <Ionicons name="grid" size={size} color={color} />,
